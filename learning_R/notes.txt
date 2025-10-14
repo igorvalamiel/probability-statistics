@@ -170,8 +170,87 @@ NOTE: This notes are taken from MIT free course, which some parts I wrote here t
 -----------------------------------------------------------------------------------------------------------
 # RANDOM NUMBERS #
 
+~ The function sample(x, k, replace=TRUE) ~
+    The function sample(x,k) generatesa random permutation of k objects from the vector x
+        > x = 1:11
+        > s2 = sample(x, 2)
+        > s4 = sample(x,4)
+        > s7 = sample(x, 7)
+        > print(s2)
+        [1]  5 11
+        > print(s4)
+        [1]  4 10  1 11
+        > print(s7)
+        [1] 3 6 2 7 8 5 1
+        > print(s7)
+        [1] 3 6 2 7 8 5 1
+        > s7 = sample(x, 7)
+        > print(s7)
+        [1]  9  2  7  1  4 10  8
+    You can allow repeated elements by using the parameter 'replace=TRUE'
+        > x = 1:11
+        > y = sample(x, 5, replace=TRUE)
+        > print(y)
+        [1] 3 5 5 9 4
+        > y = sample(x, 5, replace=TRUE)
+        > print(y)
+        [1]  6  4  7 10  6
+        > y = sample(x, 10, replace=TRUE)
+        > print(y)
+        [1] 11  3 10  7  6  7 11  4  3  6
+
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+# LOOPINGS #
+
+~ For loop ~
+    You can use for loop in R:
+        > for (j in 1:4) {
+        + print(j^2)
+        + }
+        [1] 1
+        [1] 4
+        [1] 9
+        [1] 16
 
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 # OTHERS #
     - To clean the prompt just press Ctrl+L
+
+~ Extra functions ~
+    - pnorm(q, mean=?, sd=?, lower.tail=?)
+        -> P(x <= 55)
+            > pnorm(q = 55, mean = 50, sd = 5)
+        -> P(X > 60)
+            > norm(q = 60, mean = 50, sd = 5, lower.tail = FALSE)
+        -> P(45 <= X <= 55)
+            > pnorm(q = 55, mean = 50, sd = 5) - pnorm(q = 45, mean = 50, sd = 5)
+        -> Z ~ N(0,1) [standard normal]
+            > pnorm(q = 1.96)
+    
+    - dt(x=?, df=?) ~> Calculates the ODF of t-distribution
+        -> x: the quantile where you want to find the density [it can be a value or a vector of values]
+        -> df: The degrees of freedom
+    
+    - pt(q=?, df=?, lower.tail=?) ~> Calculates the CDF of the t-distribution
+        -> x the quantile where you want to find the cdf
+        -> df: The degrees of freedom
+        -> lower.tail: TRUE [P(T <= x)] or FALSE [P(t > x)]
+
+    - rle(x) ~> run lengths in a sequence ~> gets the number of repeated itens [lengths] and its respective value [values]
+        > x = c(1,1,1,2,3,3,3,1,1)
+        > y = rle(x)
+        > print(y)
+        Run Length Encoding
+        lengths: int [1:4] 3 1 3 2
+        values : num [1:4] 1 2 3 1
+    ~> You can also get a vector with this data by using:
+        > yrle = rle(y)
+        > yl = yrle$lengths
+        > yv = yrel$values
+    
+    - set.seed(n) ~> initializes R's random number generator ~> Each seed has a "specific" sort ordering. Setting the seed garantee that you'll get the exact same sequence of "random" numbers
+
+    - rbinom(n, size, prob) ~> used do generate random deviates from a Binomial distribution ~> There will be 'n' itens tested 'size' times with probability of 'prob'
+    
