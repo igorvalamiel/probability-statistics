@@ -1,0 +1,30 @@
+print(mean(cli01))
+print(median(cli01))
+print(var(cli01))
+print(sd(cli01))
+
+
+[1] "timestamp"               "download_throughput_bps" "rtt_download_sec"       
+[4] "upload_throughput_bps"   "rtt_upload_sec"          "packet_loss_percent"    
+[7] "client"
+
+print(mean(ser07$download_throughput_bps))
+print(mean(ser07$rtt_download_sec))
+print(mean(ser07$upload_throughput_bps))
+print(mean(ser07$rtt_upload_sec))
+print(mean(ser07$packet_loss_percent))
+print(median(ser07$download_throughput_bps))
+print(median(ser07$rtt_download_sec))
+print(median(ser07$upload_throughput_bps))
+print(median(ser07$rtt_upload_sec))
+print(median(ser07$packet_loss_percent))
+print(var(ser07$download_throughput_bps))
+print(var(ser07$rtt_download_sec))
+print(var(ser07$upload_throughput_bps))
+print(var(ser07$rtt_upload_sec))
+print(var(ser07$packet_loss_percent))
+print(sd(ser07$download_throughput_bps))
+print(sd(ser07$rtt_download_sec))
+print(sd(ser07$upload_throughput_bps))
+print(sd(ser07$rtt_upload_sec))
+print(sd(ser07$packet_loss_percent))

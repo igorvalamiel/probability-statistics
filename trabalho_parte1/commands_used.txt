@@ -1,0 +1,952 @@
+> class(ndt_tests)
+[1] "data.frame"
+
+> names(ndt_tests)
+[1] "timestamp"               "download_throughput_bps" "rtt_download_sec"       
+[4] "upload_throughput_bps"   "rtt_upload_sec"          "packet_loss_percent"    
+[7] "client"
+
+> cli01 <- ndt_tests[ndt_tests$client == "client01", ]
+> cli02 <- ndt_tests[ndt_tests$client == "client02", ]
+> cli03 <- ndt_tests[ndt_tests$client == "client03", ]
+> cli04 <- ndt_tests[ndt_tests$client == "client04", ]
+> cli05 <- ndt_tests[ndt_tests$client == "client05", ]
+> cli06 <- ndt_tests[ndt_tests$client == "client06", ]
+> cli07 <- ndt_tests[ndt_tests$client == "client07", ]
+> cli08 <- ndt_tests[ndt_tests$client == "client08", ]
+> cli09 <- ndt_tests[ndt_tests$client == "client09", ]
+> cli10 <- ndt_tests[ndt_tests$client == "client10", ]
+> cli11 <- ndt_tests[ndt_tests$client == "client11", ]
+> cli12 <- ndt_tests[ndt_tests$client == "client12", ]
+> cli13 <- ndt_tests[ndt_tests$client == "client13", ]
+
+> ser01 <- ndt_tests[ndt_tests$server == "server01", ]
+> ser02 <- ndt_tests[ndt_tests$server == "server02", ]
+> ser03 <- ndt_tests[ndt_tests$server == "server03", ]
+> ser04 <- ndt_tests[ndt_tests$server == "server04", ]
+> ser05 <- ndt_tests[ndt_tests$server == "server05", ]
+> ser06 <- ndt_tests[ndt_tests$server == "server06", ]
+> ser07 <- ndt_tests[ndt_tests$server == "server07", ]
+
+_______________________________________________________________
+
+> print(mean(cli01$download_throughput_bps))
+[1] 650329090
+> print(mean(cli01$rtt_download_sec))
+[1] 0.04489711
+> print(mean(cli01$upload_throughput_bps))
+[1] 714049707
+> print(mean(cli01$rtt_upload_sec))
+[1] 0.03130497
+> print(mean(cli01$packet_loss_percent))
+[1] 0.5240926
+
+> print(median(cli01$download_throughput_bps))
+[1] 892829695
+> print(median(cli01$rtt_download_sec))
+[1] 0.011
+> print(median(cli01$upload_throughput_bps))
+[1] 878876045
+> print(median(cli01$rtt_upload_sec))
+[1] 0.0063635
+> print(median(cli01$packet_loss_percent))
+[1] 0.005475829
+
+> print(var(cli01$download_throughput_bps))
+[1] 1.194969e+17
+> print(var(cli01$rtt_download_sec))
+[1] 0.002886597
+> print(var(cli01$upload_throughput_bps))
+[1] 8.298229e+16
+> print(var(cli01$rtt_upload_sec))
+[1] 0.002170029
+> print(var(cli01$packet_loss_percent))
+[1] 2.785163
+
+> print(sd(cli01$download_throughput_bps))
+[1] 345683306
+> print(sd(cli01$rtt_download_sec))
+[1] 0.05372706
+> print(sd(cli01$upload_throughput_bps))
+[1] 288066465
+> print(sd(cli01$rtt_upload_sec))
+[1] 0.04658357
+> print(sd(cli01$packet_loss_percent))
+[1] 1.668881
+
+_______________________________________________________________
+
+> print(mean(cli02$download_throughput_bps))
+[1] 639309508
+> print(mean(cli02$rtt_download_sec))
+[1] 0.03905765
+> print(mean(cli02$upload_throughput_bps))
+[1] 561951629
+> print(mean(cli02$rtt_upload_sec))
+[1] 0.02935245
+> print(mean(cli02$packet_loss_percent))
+[1] 0.781428
+
+> print(median(cli02$download_throughput_bps))
+[1] 824316656
+> print(median(cli02$rtt_download_sec))
+[1] 0.01
+> print(median(cli02$upload_throughput_bps))
+[1] 629699679
+> print(median(cli02$rtt_upload_sec))
+[1] 0.004243
+> print(median(cli02$packet_loss_percent))
+[1] 0.06545348
+
+> print(var(cli02$download_throughput_bps))
+[1] 1.059231e+17
+> print(var(cli02$rtt_download_sec))
+[1] 0.002747875
+> print(var(cli02$upload_throughput_bps))
+[1] 4.506852e+16
+> print(var(cli02$rtt_upload_sec))
+[1] 0.002318837
+> print(var(cli02$packet_loss_percent))
+[1] 3.533486
+
+> print(sd(cli02$download_throughput_bps))
+[1] 325458331
+> print(sd(cli02$rtt_download_sec))
+[1] 0.05242018
+> print(sd(cli02$upload_throughput_bps))
+[1] 212293471
+> print(sd(cli02$rtt_upload_sec))
+[1] 0.0481543
+> print(sd(cli02$packet_loss_percent))
+[1] 1.879757
+
+_______________________________________________________________
+
+> print(mean(cli03$download_throughput_bps))
+[1] 613278410
+> print(mean(cli03$rtt_download_sec))
+[1] 0.04444818
+> print(mean(cli03$upload_throughput_bps))
+[1] 521209804
+> print(mean(cli03$rtt_upload_sec))
+[1] 0.03298587
+> print(mean(cli03$packet_loss_percent))
+[1] 0.6749519
+
+> print(median(cli03$download_throughput_bps))
+[1] 812445409
+> print(median(cli03$rtt_download_sec))
+[1] 0.01
+> print(median(cli03$upload_throughput_bps))
+[1] 592773244
+> print(median(cli03$rtt_upload_sec))
+[1] 0.004359
+> print(median(cli03$packet_loss_percent))
+[1] 0.07491672
+
+> print(var(cli03$download_throughput_bps))
+[1] 1.092923e+17
+> print(var(cli03$rtt_download_sec))
+[1] 0.003161143
+> print(var(cli03$upload_throughput_bps))
+[1] 4.406752e+16
+> print(var(cli03$rtt_upload_sec))
+[1] 0.002553585
+> print(var(cli03$packet_loss_percent))
+[1] 2.067336
+
+> print(sd(cli03$download_throughput_bps))
+[1] 330593891
+> print(sd(cli03$rtt_download_sec))
+[1] 0.05622404
+> print(sd(cli03$upload_throughput_bps))
+[1] 209922651
+> print(sd(cli03$rtt_upload_sec))
+[1] 0.05053301
+> print(sd(cli03$packet_loss_percent))
+[1] 1.437824
+
+_______________________________________________________________
+
+> print(mean(cli04$download_throughput_bps))
+[1] 580578884
+> print(mean(cli04$rtt_download_sec))
+[1] 0.05085351
+> print(mean(cli04$upload_throughput_bps))
+[1] 548986226
+> print(mean(cli04$rtt_upload_sec))
+[1] 0.03518835
+> print(mean(cli04$packet_loss_percent))
+[1] 0.512808
+
+> print(median(cli04$download_throughput_bps))
+[1] 799150140
+> print(median(cli04$rtt_download_sec))
+[1] 0.012
+> print(median(cli04$upload_throughput_bps))
+[1] 622324165
+> print(median(cli04$rtt_upload_sec))
+[1] 0.008341
+> print(median(cli04$packet_loss_percent))
+[1] 0.04931842
+
+> print(var(cli04$download_throughput_bps))
+[1] 1.199981e+17
+> print(var(cli04$rtt_download_sec))
+[1] 0.00305151
+> print(var(cli04$upload_throughput_bps))
+[1] 6.146564e+16
+> print(var(cli04$rtt_upload_sec))
+[1] 0.004894735
+> print(var(cli04$packet_loss_percent))
+[1] 1.730105
+
+> print(sd(cli04$download_throughput_bps))
+[1] 346407434
+> print(sd(cli04$rtt_download_sec))
+[1] 0.05524047
+> print(sd(cli04$upload_throughput_bps))
+[1] 247922649
+> print(sd(cli04$rtt_upload_sec))
+[1] 0.06996238
+> print(sd(cli04$packet_loss_percent))
+[1] 1.315334
+
+_______________________________________________________________
+
+> print(mean(cli05$download_throughput_bps))
+[1] 309530969
+> print(mean(cli05$rtt_download_sec))
+[1] 0.04516631
+> print(mean(cli05$upload_throughput_bps))
+[1] 347752208
+> print(mean(cli05$rtt_upload_sec))
+[1] 0.02970688
+> print(mean(cli05$packet_loss_percent))
+[1] 6.311938
+
+> print(median(cli05$download_throughput_bps))
+[1] 106962886
+> print(median(cli05$rtt_download_sec))
+[1] 0.01
+> print(median(cli05$upload_throughput_bps))
+[1] 108594535
+> print(median(cli05$rtt_upload_sec))
+[1] 0.0041115
+> print(median(cli05$packet_loss_percent))
+[1] 8.276383
+
+> print(var(cli05$download_throughput_bps))
+[1] 1.12061e+17
+> print(var(cli05$rtt_download_sec))
+[1] 0.003010162
+> print(var(cli05$upload_throughput_bps))
+[1] 1.234723e+17
+> print(var(cli05$rtt_upload_sec))
+[1] 0.002236007
+> print(var(cli05$packet_loss_percent))
+[1] 28.0498
+
+> print(sd(cli05$download_throughput_bps))
+[1] 334755088
+> print(sd(cli05$rtt_download_sec))
+[1] 0.05486495
+> print(sd(cli05$upload_throughput_bps))
+[1] 351386303
+> print(sd(cli05$rtt_upload_sec))
+[1] 0.04728644
+> print(sd(cli05$packet_loss_percent))
+[1] 5.296206
+_______________________________________________________________
+
+> print(mean(cli06$download_throughput_bps))
+[1] 611258428
+> print(mean(cli06$rtt_download_sec))
+[1] 0.04676079
+> print(mean(cli06$upload_throughput_bps))
+[1] 606534738
+> print(mean(cli06$rtt_upload_sec))
+[1] 0.03178167
+> print(mean(cli06$packet_loss_percent))
+[1] 0.83215
+
+> print(median(cli06$download_throughput_bps))
+[1] 830235943
+> print(median(cli06$rtt_download_sec))
+[1] 0.0099445
+> print(median(cli06$upload_throughput_bps))
+[1] 738698733
+> print(median(cli06$rtt_upload_sec))
+[1] 0.003858
+> print(median(cli06$packet_loss_percent))
+[1] 0.7170662
+
+> print(var(cli06$download_throughput_bps))
+[1] 1.16049e+17
+> print(var(cli06$rtt_download_sec))
+[1] 0.003196416
+> print(var(cli06$upload_throughput_bps))
+[1] 6.593926e+16
+> print(var(cli06$rtt_upload_sec))
+[1] 0.004664651
+> print(var(cli06$packet_loss_percent))
+[1] 1.034904
+
+> print(sd(cli06$download_throughput_bps))
+[1] 340659603
+> print(sd(cli06$rtt_download_sec))
+[1] 0.05653686
+> print(sd(cli06$upload_throughput_bps))
+[1] 256786414
+> print(sd(cli06$rtt_upload_sec))
+[1] 0.06829825
+> print(sd(cli06$packet_loss_percent))
+[1] 1.017302
+_______________________________________________________________
+
+> print(mean(cli07$download_throughput_bps))
+[1] 629741956
+> print(mean(cli07$rtt_download_sec))
+[1] 0.04628743
+> print(mean(cli07$upload_throughput_bps))
+[1] 491236756
+> print(mean(cli07$rtt_upload_sec))
+[1] 0.03463999
+> print(mean(cli07$packet_loss_percent))
+[1] 0.5296586
+
+> print(median(cli07$download_throughput_bps))
+[1] 834419016
+> print(median(cli07$rtt_download_sec))
+[1] 0.013
+> print(median(cli07$upload_throughput_bps))
+[1] 550829432
+> print(median(cli07$rtt_upload_sec))
+[1] 0.008962
+> print(median(cli07$packet_loss_percent))
+[1] 0.08759491
+
+> print(var(cli07$download_throughput_bps))
+[1] 1.104368e+17
+> print(var(cli07$rtt_download_sec))
+[1] 0.00332007
+> print(var(cli07$upload_throughput_bps))
+[1] 3.713048e+16
+> print(var(cli07$rtt_upload_sec))
+[1] 0.00266557
+> print(var(cli07$packet_loss_percent))
+[1] 2.42994
+
+> print(sd(cli07$download_throughput_bps))
+[1] 332320310
+> print(sd(cli07$rtt_download_sec))
+[1] 0.05762005
+> print(sd(cli07$upload_throughput_bps))
+[1] 192692702
+> print(sd(cli07$rtt_upload_sec))
+[1] 0.05162916
+> print(sd(cli07$packet_loss_percent))
+[1] 1.558827
+_______________________________________________________________
+
+> print(mean(cli08$download_throughput_bps))
+[1] 233889620
+> print(mean(cli08$rtt_download_sec))
+[1] 0.05441944
+> print(mean(cli08$upload_throughput_bps))
+[1] 225898541
+> print(mean(cli08$rtt_upload_sec))
+[1] 0.04077692
+> print(mean(cli08$packet_loss_percent))
+[1] 5.060996
+
+> print(median(cli08$download_throughput_bps))
+[1] 96396453
+> print(median(cli08$rtt_download_sec))
+[1] 0.01
+> print(median(cli08$upload_throughput_bps))
+[1] 97324496
+> print(median(cli08$rtt_upload_sec))
+[1] 0.005875
+> print(median(cli08$packet_loss_percent))
+[1] 3.334843
+
+> print(var(cli08$download_throughput_bps))
+[1] 8.546441e+16
+> print(var(cli08$rtt_download_sec))
+[1] 0.004538536
+> print(var(cli08$upload_throughput_bps))
+[1] 6.238042e+16
+> print(var(cli08$rtt_upload_sec))
+[1] 0.003860978
+> print(var(cli08$packet_loss_percent))
+[1] 36.95639
+
+> print(sd(cli08$download_throughput_bps))
+[1] 292342973
+> print(sd(cli08$rtt_download_sec))
+[1] 0.06736866
+> print(sd(cli08$upload_throughput_bps))
+[1] 249760729
+> print(sd(cli08$rtt_upload_sec))
+[1] 0.06213677
+> print(sd(cli08$packet_loss_percent))
+[1] 6.079177
+_______________________________________________________________
+
+> print(mean(cli09$download_throughput_bps))
+[1] 645240035
+> print(mean(cli09$rtt_download_sec))
+[1] 0.04497363
+> print(mean(cli09$upload_throughput_bps))
+[1] 452650071
+> print(mean(cli09$rtt_upload_sec))
+[1] 0.03393687
+> print(mean(cli09$packet_loss_percent))
+[1] 0.4832634
+
+> print(median(cli09$download_throughput_bps))
+[1] 894133515
+> print(median(cli09$rtt_download_sec))
+[1] 0.01
+> print(median(cli09$upload_throughput_bps))
+[1] 190206886
+> print(median(cli09$rtt_upload_sec))
+[1] 0.0043445
+> print(median(cli09$packet_loss_percent))
+[1] 0.07306618
+
+> print(var(cli09$download_throughput_bps))
+[1] 1.232736e+17
+> print(var(cli09$rtt_download_sec))
+[1] 0.00301162
+> print(var(cli09$upload_throughput_bps))
+[1] 1.510978e+17
+> print(var(cli09$rtt_upload_sec))
+[1] 0.002560954
+> print(var(cli09$packet_loss_percent))
+[1] 1.917653
+
+> print(sd(cli09$download_throughput_bps))
+[1] 351103441
+> print(sd(cli09$rtt_download_sec))
+[1] 0.05487823
+> print(sd(cli09$upload_throughput_bps))
+[1] 388712985
+> print(sd(cli09$rtt_upload_sec))
+[1] 0.05060587
+> print(sd(cli09$packet_loss_percent))
+[1] 1.384793
+_______________________________________________________________
+
+> print(mean(cli10$download_throughput_bps))
+[1] 231791295
+> print(mean(cli10$rtt_download_sec))
+[1] 0.08720243
+> print(mean(cli10$upload_throughput_bps))
+[1] 37347812
+> print(mean(cli10$rtt_upload_sec))
+[1] 0.06773093
+> print(mean(cli10$packet_loss_percent))
+[1] 1.480346
+
+> print(median(cli10$download_throughput_bps))
+[1] 221136216
+> print(median(cli10$rtt_download_sec))
+[1] 0.015269
+> print(median(cli10$upload_throughput_bps))
+[1] 40764883
+> print(median(cli10$rtt_upload_sec))
+[1] 0.016558
+> print(median(cli10$packet_loss_percent))
+[1] 0.00747008
+
+> print(var(cli10$download_throughput_bps))
+[1] 2.756848e+16
+> print(var(cli10$rtt_download_sec))
+[1] 0.01069631
+> print(var(cli10$upload_throughput_bps))
+[1] 8.590236e+13
+> print(var(cli10$rtt_upload_sec))
+[1] 0.008787973
+> print(var(cli10$packet_loss_percent))
+[1] 8.282362
+
+> print(sd(cli10$download_throughput_bps))
+[1] 166037581
+> print(sd(cli10$rtt_download_sec))
+[1] 0.103423
+> print(sd(cli10$upload_throughput_bps))
+[1] 9268353
+> print(sd(cli10$rtt_upload_sec))
+[1] 0.09374419
+> print(sd(cli10$packet_loss_percent))
+[1] 2.877909
+_______________________________________________________________
+
+> print(mean(cli11$download_throughput_bps))
+[1] 504634766
+> print(mean(cli11$rtt_download_sec))
+[1] 0.01288279
+> print(mean(cli11$upload_throughput_bps))
+[1] 267394106
+> print(mean(cli11$rtt_upload_sec))
+[1] 0.01522288
+> print(mean(cli11$packet_loss_percent))
+[1] 1.197161
+
+> print(median(cli11$download_throughput_bps))
+[1] 690643959
+> print(median(cli11$rtt_download_sec))
+[1] 0.012963
+> print(median(cli11$upload_throughput_bps))
+[1] 382950945
+> print(median(cli11$rtt_upload_sec))
+[1] 0.015494
+> print(median(cli11$packet_loss_percent))
+[1] 0.5409766
+
+> print(var(cli11$download_throughput_bps))
+[1] 8.322927e+16
+> print(var(cli11$rtt_download_sec))
+[1] 3.897524e-05
+> print(var(cli11$upload_throughput_bps))
+[1] 2.726939e+16
+> print(var(cli11$rtt_upload_sec))
+[1] 8.347817e-05
+> print(var(cli11$packet_loss_percent))
+[1] 3.785838
+
+> print(sd(cli11$download_throughput_bps))
+[1] 288494834
+> print(sd(cli11$rtt_download_sec))
+[1] 0.006243015
+> print(sd(cli11$upload_throughput_bps))
+[1] 165134448
+> print(sd(cli11$rtt_upload_sec))
+[1] 0.009136639
+> print(sd(cli11$packet_loss_percent))
+[1] 1.945723
+_______________________________________________________________
+
+> print(mean(cli12$download_throughput_bps))
+[1] 464765895
+> print(mean(cli12$rtt_download_sec))
+[1] 0.08648528
+> print(mean(cli12$upload_throughput_bps))
+[1] 92171176
+> print(mean(cli12$rtt_upload_sec))
+[1] 0.07346214
+> print(mean(cli12$packet_loss_percent))
+[1] 0.06380462
+
+> print(median(cli12$download_throughput_bps))
+[1] 636004142
+> print(median(cli12$rtt_download_sec))
+[1] 0.0145835
+> print(median(cli12$upload_throughput_bps))
+[1] 96038521
+> print(median(cli12$rtt_upload_sec))
+[1] 0.017329
+> print(median(cli12$packet_loss_percent))
+[1] 0.006148947
+
+> print(var(cli12$download_throughput_bps))
+[1] 8.11542e+16
+> print(var(cli12$rtt_download_sec))
+[1] 0.01078152
+> print(var(cli12$upload_throughput_bps))
+[1] 9.255567e+14
+> print(var(cli12$rtt_upload_sec))
+[1] 0.0094669
+> print(var(cli12$packet_loss_percent))
+[1] 0.1852676
+
+> print(sd(cli12$download_throughput_bps))
+[1] 284875756
+> print(sd(cli12$rtt_download_sec))
+[1] 0.1038341
+> print(sd(cli12$upload_throughput_bps))
+[1] 30422964
+> print(sd(cli12$rtt_upload_sec))
+[1] 0.09729799
+> print(sd(cli12$packet_loss_percent))
+[1] 0.4304273
+_______________________________________________________________
+
+> print(mean(cli13$download_throughput_bps))
+[1] 593933163
+> print(mean(cli13$rtt_download_sec))
+[1] 0.01174779
+> print(mean(cli13$upload_throughput_bps))
+[1] 294764544
+> print(mean(cli13$rtt_upload_sec))
+[1] 0.01298638
+> print(mean(cli13$packet_loss_percent))
+[1] 5.336099
+
+> print(median(cli13$download_throughput_bps))
+[1] 596143878
+> print(median(cli13$rtt_download_sec))
+[1] 0.0119265
+> print(median(cli13$upload_throughput_bps))
+[1] 298961298
+> print(median(cli13$rtt_upload_sec))
+[1] 0.0142835
+> print(median(cli13$packet_loss_percent))
+[1] 5.547862
+
+> print(var(cli13$download_throughput_bps))
+[1] 4.850877e+14
+> print(var(cli13$rtt_download_sec))
+[1] 3.199171e-05
+> print(var(cli13$upload_throughput_bps))
+[1] 2.75056e+14
+> print(var(cli13$rtt_upload_sec))
+[1] 2.494817e-05
+> print(var(cli13$packet_loss_percent))
+[1] 1.47013
+
+> print(sd(cli13$download_throughput_bps))
+[1] 22024707
+> print(sd(cli13$rtt_download_sec))
+[1] 0.005656121
+> print(sd(cli13$upload_throughput_bps))
+[1] 16584812
+> print(sd(cli13$rtt_upload_sec))
+[1] 0.004994814
+> print(sd(cli13$packet_loss_percent))
+[1] 1.212489
+_______________________________________________________________
+
+> print(mean(ser01$download_throughput_bps))
+[1] 642228649
+> print(mean(ser01$rtt_download_sec))
+[1] 0.01129419
+> print(mean(ser01$upload_throughput_bps))
+[1] 437093212
+> print(mean(ser01$rtt_upload_sec))
+[1] 0.01263571
+> print(mean(ser01$packet_loss_percent))
+[1] 2.257183
+
+> print(median(ser01$download_throughput_bps))
+[1] 761755122
+> print(median(ser01$rtt_download_sec))
+[1] 0.011
+> print(median(ser01$upload_throughput_bps))
+[1] 421465715
+> print(median(ser01$rtt_upload_sec))
+[1] 0.01114
+> print(median(ser01$packet_loss_percent))
+[1] 1.01694
+
+> print(var(ser01$download_throughput_bps))
+[1] 7.22316e+16
+> print(var(ser01$rtt_download_sec))
+[1] 5.207956e-06
+> print(var(ser01$upload_throughput_bps))
+[1] 9.676444e+16
+> print(var(ser01$rtt_upload_sec))
+[1] 1.615798e-05
+> print(var(ser01$packet_loss_percent))
+[1] 7.854041
+
+> print(sd(ser01$download_throughput_bps))
+[1] 268759368
+> print(sd(ser01$rtt_download_sec))
+[1] 0.002282095
+> print(sd(ser01$upload_throughput_bps))
+[1] 311069827
+> print(sd(ser01$rtt_upload_sec))
+[1] 0.004019699
+> print(sd(ser01$packet_loss_percent))
+[1] 2.802506
+_______________________________________________________________
+
+> print(mean(ser02$download_throughput_bps))
+[1] 634859986
+> print(mean(ser02$rtt_download_sec))
+[1] 0.01137941
+> print(mean(ser02$upload_throughput_bps))
+[1] 440586102
+> print(mean(ser02$rtt_upload_sec))
+[1] 0.01130175
+> print(mean(ser02$packet_loss_percent))
+[1] 1.977861
+
+> print(median(ser02$download_throughput_bps))
+[1] 761778714
+> print(median(ser02$rtt_download_sec))
+[1] 0.011
+> print(median(ser02$upload_throughput_bps))
+[1] 431405558
+> print(median(ser02$rtt_upload_sec))
+[1] 0.0112455
+> print(median(ser02$packet_loss_percent))
+[1] 0.7934933
+
+> print(var(ser02$download_throughput_bps))
+[1] 7.813493e+16
+> print(var(ser02$rtt_download_sec))
+[1] 6.97092e-06
+> print(var(ser02$upload_throughput_bps))
+[1] 1.102855e+17
+> print(var(ser02$rtt_upload_sec))
+[1] 0.001800188
+> print(var(ser02$packet_loss_percent))
+[1] 8.136013
+
+> print(sd(ser02$download_throughput_bps))
+[1] 279526266
+> print(sd(ser02$rtt_download_sec))
+[1] 0.00264025
+> print(sd(ser02$upload_throughput_bps))
+[1] 332092680
+> print(sd(ser02$rtt_upload_sec))
+[1] 0.04242862
+> print(sd(ser02$packet_loss_percent))
+[1] 2.85237
+_______________________________________________________________
+
+> print(mean(ser03$download_throughput_bps))
+[1] 638431671
+> print(mean(ser03$rtt_download_sec))
+[1] 0.01146722
+> print(mean(ser03$upload_throughput_bps))
+[1] 448242234
+> print(mean(ser03$rtt_upload_sec))
+[1] 0.01294039
+> print(mean(ser03$packet_loss_percent))
+[1] 2.130031
+
+> print(median(ser03$download_throughput_bps))
+[1] 768343384
+> print(median(ser03$rtt_download_sec))
+[1] 0.011
+> print(median(ser03$upload_throughput_bps))
+[1] 451789454
+> print(median(ser03$rtt_upload_sec))
+[1] 0.0112025
+> print(median(ser03$packet_loss_percent))
+[1] 0.8350133
+
+> print(var(ser03$download_throughput_bps))
+[1] 7.765862e+16
+> print(var(ser03$rtt_download_sec))
+[1] 6.100692e-06
+> print(var(ser03$upload_throughput_bps))
+[1] 1.064002e+17
+> print(var(ser03$rtt_upload_sec))
+[1] 1.859735e-05
+> print(var(ser03$packet_loss_percent))
+[1] 8.557466
+
+> print(sd(ser03$download_throughput_bps))
+[1] 278672954
+> print(sd(ser03$rtt_download_sec))
+[1] 0.002469958
+> print(sd(ser03$upload_throughput_bps))
+[1] 326190507
+> print(sd(ser03$rtt_upload_sec))
+[1] 0.004312464
+> print(sd(ser03$packet_loss_percent))
+[1] 2.925315
+_______________________________________________________________
+
+> print(mean(ser04$download_throughput_bps))
+[1] 196583089
+> print(mean(ser04$rtt_download_sec))
+[1] 0.1275872
+> print(mean(ser04$upload_throughput_bps))
+[1] 157250705
+> print(mean(ser04$rtt_upload_sec))
+[1] 0.1291223
+> print(mean(ser04$packet_loss_percent))
+[1] 1.939049
+
+> print(median(ser04$download_throughput_bps))
+[1] 168405038
+> print(median(ser04$rtt_download_sec))
+[1] 0.118385
+> print(median(ser04$upload_throughput_bps))
+[1] 181915545
+> print(median(ser04$rtt_upload_sec))
+[1] 0.118861
+> print(median(ser04$packet_loss_percent))
+[1] 0
+
+> print(var(ser04$download_throughput_bps))
+[1] 3.145487e+16
+> print(var(ser04$rtt_download_sec))
+[1] 0.004459809
+> print(var(ser04$upload_throughput_bps))
+[1] 8.205735e+15
+> print(var(ser04$rtt_upload_sec))
+[1] 0.004596163
+> print(var(ser04$packet_loss_percent))
+[1] 15.78079
+
+> print(sd(ser04$download_throughput_bps))
+[1] 177355218
+> print(sd(ser04$rtt_download_sec))
+[1] 0.0667818
+> print(sd(ser04$upload_throughput_bps))
+[1] 90585515
+> print(sd(ser04$rtt_upload_sec))
+[1] 0.067795
+> print(sd(ser04$packet_loss_percent))
+[1] 3.972505
+_______________________________________________________________
+
+> print(mean(ser05$download_throughput_bps))
+[1] 201203720
+> print(mean(ser05$rtt_download_sec))
+[1] 0.123079
+> print(mean(ser05$upload_throughput_bps))
+[1] 158269477
+> print(mean(ser05$rtt_upload_sec))
+[1] 0.1240311
+> print(mean(ser05$packet_loss_percent))
+[1] 2.747088
+
+> print(median(ser05$download_throughput_bps))
+[1] 168824051
+> print(median(ser05$rtt_download_sec))
+[1] 0.118946
+> print(median(ser05$upload_throughput_bps))
+[1] 181156346
+> print(median(ser05$rtt_upload_sec))
+[1] 0.118818
+> print(median(ser05$packet_loss_percent))
+[1] 0
+
+> print(var(ser05$download_throughput_bps))
+[1] 3.35048e+16
+> print(var(ser05$rtt_download_sec))
+[1] 0.004574046
+> print(var(ser05$upload_throughput_bps))
+[1] 8.750848e+15
+> print(var(ser05$rtt_upload_sec))
+[1] 0.004738277
+> print(var(ser05$packet_loss_percent))
+[1] 26.86678
+
+> print(sd(ser05$download_throughput_bps))
+[1] 183043176
+> print(sd(ser05$rtt_download_sec))
+[1] 0.06763169
+> print(sd(ser05$upload_throughput_bps))
+[1] 93545966
+> print(sd(ser05$rtt_upload_sec))
+[1] 0.06883514
+> print(sd(ser05$packet_loss_percent))
+[1] 5.183317
+_______________________________________________________________
+
+> print(mean(ser06$download_throughput_bps))
+[1] 205373287
+> print(mean(ser06$rtt_download_sec))
+[1] 0.1294295
+> print(mean(ser06$upload_throughput_bps))
+[1] 157433422
+> print(mean(ser06$rtt_upload_sec))
+[1] 0.1288348
+> print(mean(ser06$packet_loss_percent))
+[1] 1.94861
+
+> print(median(ser06$download_throughput_bps))
+[1] 169563776
+> print(median(ser06$rtt_download_sec))
+[1] 0.118838
+> print(median(ser06$upload_throughput_bps))
+[1] 181308911
+> print(median(ser06$rtt_upload_sec))
+[1] 0.119
+> print(median(ser06$packet_loss_percent))
+[1] 0
+
+> print(var(ser06$download_throughput_bps))
+[1] 3.636863e+16
+> print(var(ser06$rtt_download_sec))
+[1] 0.005038334
+> print(var(ser06$upload_throughput_bps))
+[1] 9.82152e+15
+> print(var(ser06$rtt_upload_sec))
+[1] 0.007509859
+> print(var(ser06$packet_loss_percent))
+[1] 17.95935
+
+> print(sd(ser06$download_throughput_bps))
+[1] 190705611
+> print(sd(ser06$rtt_download_sec))
+[1] 0.07098122
+> print(sd(ser06$upload_throughput_bps))
+[1] 99103584
+> print(sd(ser06$rtt_upload_sec))
+[1] 0.08665944
+> print(sd(ser06$packet_loss_percent))
+[1] 4.237847
+_______________________________________________________________
+
+> print(mean(ser07$download_throughput_bps))
+[1] 585219497
+> print(mean(ser07$rtt_download_sec))
+[1] 0.02961403
+> print(mean(ser07$upload_throughput_bps))
+[1] 449144828
+> print(mean(ser07$rtt_upload_sec))
+[1] 0.007644065
+> print(mean(ser07$packet_loss_percent))
+[1] 1.665324
+
+> print(median(ser07$download_throughput_bps))
+[1] 709204403
+> print(median(ser07$rtt_download_sec))
+[1] 0.009
+> print(median(ser07$upload_throughput_bps))
+[1] 513251778
+> print(median(ser07$rtt_upload_sec))
+[1] 0.005448
+> print(median(ser07$packet_loss_percent))
+[1] 0.08924578
+
+> print(var(ser07$download_throughput_bps))
+[1] 1.079835e+17
+> print(var(ser07$rtt_download_sec))
+[1] 0.002880341
+> print(var(ser07$upload_throughput_bps))
+[1] 9.297521e+16
+> print(var(ser07$rtt_upload_sec))
+[1] 2.620936e-05
+> print(var(ser07$packet_loss_percent))
+[1] 9.697489
+
+> print(sd(ser07$download_throughput_bps))
+[1] 328608362
+> print(sd(ser07$rtt_download_sec))
+[1] 0.05366881
+> print(sd(ser07$upload_throughput_bps))
+[1] 304918359
+> print(sd(ser07$rtt_upload_sec))
+[1] 0.005119508
+> print(sd(ser07$packet_loss_percent))
+[1] 3.114079
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
+_______________________________________________________________
