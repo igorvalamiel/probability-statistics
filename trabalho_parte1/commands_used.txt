@@ -74,20 +74,21 @@ _______________________________________________________________
 > print(sd(cli01$packet_loss_percent))
 [1] 1.668881
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli01$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 54090084 158434332 171235933 
+> quantile(cli01$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1204520 0.1217637 0.1256073 
+> quantile(cli01$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+177957437 181593298 184189259 
+> quantile(cli01$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1199805 0.1209050 0.1223907 
+> quantile(cli01$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.7664849 1.5463927 8.4549297 
 _______________________________________________________________
 
 > print(mean(cli02$download_throughput_bps))
@@ -134,20 +135,21 @@ _______________________________________________________________
 > print(sd(cli02$packet_loss_percent))
 [1] 1.879757
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli02$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 47430126 101251970 170413654 
+> quantile(cli02$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1186344 0.1200000 0.1251378 
+> quantile(cli02$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+173756834 181229857 184649226 
+> quantile(cli02$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1173832 0.1199522 0.1253479 
+> quantile(cli02$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+ 1.813834  3.146632 10.942418 
 _______________________________________________________________
 
 > print(mean(cli03$download_throughput_bps))
@@ -194,20 +196,21 @@ _______________________________________________________________
 > print(sd(cli03$packet_loss_percent))
 [1] 1.437824
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli03$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 56426041 110313237 167989676 
+> quantile(cli03$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1199713 0.1209626 0.2194856 
+> quantile(cli03$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 93061016 181207629 183349610 
+> quantile(cli03$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1189527 0.1198712 0.1876244 
+> quantile(cli03$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+     90%      95%      99% 
+1.633052 1.989632 7.174737 
 _______________________________________________________________
 
 > print(mean(cli04$download_throughput_bps))
@@ -254,20 +257,21 @@ _______________________________________________________________
 > print(sd(cli04$packet_loss_percent))
 [1] 1.315334
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli04$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 40047608  86101373 160625149 
+> quantile(cli04$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1220000 0.1225600 0.1266242 
+> quantile(cli04$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+139850069 177618420 179276989 
+> quantile(cli04$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1213190 0.1223890 0.1263812 
+> quantile(cli04$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+     90%      95%      99% 
+1.124819 1.690270 6.304539 
 _______________________________________________________________
 
 > print(mean(cli05$download_throughput_bps))
@@ -314,20 +318,21 @@ _______________________________________________________________
 > print(sd(cli05$packet_loss_percent))
 [1] 5.296206
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli05$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+49338497 98007131 99185666 
+> quantile(cli05$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1190000 0.1197293 0.2191238 
+> quantile(cli05$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+92781555 94527184 96001014 
+> quantile(cli05$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1185950 0.1191927 0.1209952 
+> quantile(cli05$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+     90%      95%      99% 
+12.63844 13.82750 15.00835
 _______________________________________________________________
 
 > print(mean(cli06$download_throughput_bps))
@@ -374,20 +379,21 @@ _______________________________________________________________
 > print(sd(cli06$packet_loss_percent))
 [1] 1.017302
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli06$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 54922238  87175971 170448789 
+> quantile(cli06$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1189979 0.1197535 0.2191447 
+> quantile(cli06$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 92684057 182275295 184245414 
+> quantile(cli06$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1185252 0.1195656 0.2185587 
+> quantile(cli06$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+     90%      95%      99% 
+1.833819 2.100953 4.648417 
 _______________________________________________________________
 
 > print(mean(cli07$download_throughput_bps))
@@ -434,20 +440,21 @@ _______________________________________________________________
 > print(sd(cli07$packet_loss_percent))
 [1] 1.558827
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli07$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 54679968  88045534 162704944 
+> quantile(cli07$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1226701 0.1240665 0.2230098 
+> quantile(cli07$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 90798475 173838317 177629563 
+> quantile(cli07$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1223650 0.1233160 0.2231225 
+> quantile(cli07$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.9957241 1.6477101 7.4132589 
 _______________________________________________________________
 
 > print(mean(cli08$download_throughput_bps))
@@ -494,20 +501,21 @@ _______________________________________________________________
 > print(sd(cli08$packet_loss_percent))
 [1] 6.079177
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli08$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+50262825 69408022 75888243 
+> quantile(cli08$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+  90%   95%   99% 
+0.120 0.219 0.221 
+> quantile(cli08$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+45136806 59635194 84704185 
+> quantile(cli08$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1200000 0.2193946 0.2209069 
+> quantile(cli08$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+     90%      95%      99% 
+18.47343 19.57961 20.86232 
 _______________________________________________________________
 
 > print(mean(cli09$download_throughput_bps))
@@ -554,20 +562,21 @@ _______________________________________________________________
 > print(sd(cli09$packet_loss_percent))
 [1] 1.384793
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli09$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 55159386  99715290 167634997 
+> quantile(cli09$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1195661 0.1204516 0.2185907 
+> quantile(cli09$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+ 1753549 14004796 28537776 
+> quantile(cli09$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1191062 0.1202635 0.1238206 
+> quantile(cli09$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.7198255 1.4753474 7.6007798 
 _______________________________________________________________
 
 > print(mean(cli10$download_throughput_bps))
@@ -614,20 +623,21 @@ _______________________________________________________________
 > print(sd(cli10$packet_loss_percent))
 [1] 2.877909
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli10$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+12036049 20369009 32150237 
+> quantile(cli10$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.2306497 0.2339347 0.2460406 
+> quantile(cli10$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+ 6345305 17477503 23164502 
+> quantile(cli10$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.2335270 0.2370835 0.2471755 
+> quantile(cli10$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+ 6.292782  7.597659 10.892067
 _______________________________________________________________
 
 > print(mean(cli11$download_throughput_bps))
@@ -674,20 +684,21 @@ _______________________________________________________________
 > print(sd(cli11$packet_loss_percent))
 [1] 1.945723
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli11$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 79665072 137567288 139363910 
+> quantile(cli11$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+       90%        95%        99% 
+0.01600000 0.01604520 0.02111484 
+> quantile(cli11$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+12615110 63409672 64046475 
+> quantile(cli11$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+       90%        95%        99% 
+0.01777500 0.01848660 0.03450892 
+> quantile(cli11$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+     90%      95%      99% 
+3.256978 5.862084 9.083913
 _______________________________________________________________
 
 > print(mean(cli12$download_throughput_bps))
@@ -734,20 +745,21 @@ _______________________________________________________________
 > print(sd(cli12$packet_loss_percent))
 [1] 0.4304273
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli12$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+72664069 79704011 81849855 
+> quantile(cli12$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.2298613 0.2330189 0.2430941 
+> quantile(cli12$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+18426137 42881241 53900873 
+> quantile(cli12$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.2338446 0.2364755 0.2489052 
+> quantile(cli12$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1187976 0.1614400 0.2750816 
 _______________________________________________________________
 
 > print(mean(cli13$download_throughput_bps))
@@ -794,20 +806,21 @@ _______________________________________________________________
 > print(sd(cli13$packet_loss_percent))
 [1] 1.212489
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(cli13$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+581614483 587633106 591225127 
+> quantile(cli13$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+       90%        95%        99% 
+0.01500000 0.01500000 0.02023212 
+> quantile(cli13$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+240856842 271639075 281256852 
+> quantile(cli13$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.0153388 0.0155810 0.0236673 
+> quantile(cli13$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+     90%      95%      99% 
+6.698504 6.936176 7.430254
 _______________________________________________________________
 
 > print(mean(ser01$download_throughput_bps))
@@ -854,20 +867,21 @@ _______________________________________________________________
 > print(sd(ser01$packet_loss_percent))
 [1] 2.802506
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(ser01$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 83558349  95422138 106422089 
+> quantile(ser01$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+       90%        95%        99% 
+0.01441950 0.01576325 0.01756185 
+> quantile(ser01$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+23492016 42433702 45411353 
+> quantile(ser01$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+       90%        95%        99% 
+0.01897400 0.02048875 0.02372990 
+> quantile(ser01$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+ 6.434744  7.611229 11.242165 
 _______________________________________________________________
 
 > print(mean(ser02$download_throughput_bps))
@@ -914,20 +928,21 @@ _______________________________________________________________
 > print(sd(ser02$packet_loss_percent))
 [1] 2.85237
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(ser02$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 29760085  95243850 105599803 
+> quantile(ser02$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+       90%        95%        99% 
+0.01500000 0.01680850 0.01863225 
+> quantile(ser02$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+19511736 39152334 44679582 
+> quantile(ser02$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+       90%        95%        99% 
+0.02014400 0.02220700 0.02467775 
+> quantile(ser02$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+ 6.273744  8.208077 11.664890
 _______________________________________________________________
 
 > print(mean(ser03$download_throughput_bps))
@@ -974,20 +989,21 @@ _______________________________________________________________
 > print(sd(ser03$packet_loss_percent))
 [1] 2.925315
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(ser03$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+       1%        5%       10% 
+ 56569025  95789961 105694117 
+> quantile(ser03$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+       90%        95%        99% 
+0.01500000 0.01657275 0.01803990 
+> quantile(ser03$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+22946726 40759245 45211045 
+> quantile(ser03$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+       90%        95%        99% 
+0.02007630 0.02202525 0.02574079 
+> quantile(ser03$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+ 6.456412  8.443359 11.528407 
 _______________________________________________________________
 
 > print(mean(ser04$download_throughput_bps))
@@ -1034,20 +1050,21 @@ _______________________________________________________________
 > print(sd(ser04$packet_loss_percent))
 [1] 3.972505
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(ser04$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+20433835 52864547 75085885 
+> quantile(ser04$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.2238716 0.2309098 0.2433280 
+> quantile(ser04$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+ 3298681 23710916 35490299 
+> quantile(ser04$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.2313522 0.2354243 0.2432475 
+> quantile(ser04$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+ 6.353303 12.172611 18.994861 
 _______________________________________________________________
 
 > print(mean(ser05$download_throughput_bps))
@@ -1094,20 +1111,21 @@ _______________________________________________________________
 > print(sd(ser05$packet_loss_percent))
 [1] 5.183317
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(ser05$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+20380249 51880966 77921679 
+> quantile(ser05$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.2234928 0.2301380 0.2411114 
+> quantile(ser05$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+ 8904361 31151417 37049279 
+> quantile(ser05$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.2280804 0.2349650 0.2483167 
+> quantile(ser05$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+     90%      95%      99% 
+10.85832 17.38410 20.34595
 _______________________________________________________________
 
 > print(mean(ser06$download_throughput_bps))
@@ -1154,20 +1172,21 @@ _______________________________________________________________
 > print(sd(ser06$packet_loss_percent))
 [1] 4.237847
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(ser06$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+21580031 65825716 73338177 
+> quantile(ser06$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.2276650 0.2322310 0.2426558 
+> quantile(ser06$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+ 2206739 26416478 35406563 
+> quantile(ser06$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.2323580 0.2369270 0.2479934 
+> quantile(ser06$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+ 6.415476 12.029613 19.347042
 _______________________________________________________________
 
 > print(mean(ser07$download_throughput_bps))
@@ -1214,18 +1233,19 @@ _______________________________________________________________
 > print(sd(ser07$packet_loss_percent))
 [1] 3.114079
 
-download_throughput_bps
-
-
-rtt_download_sec
-
-
-upload_throughput_bps
-
-
-rtt_upload_sec
-
-
-packet_loss_percent
-
+> quantile(ser07$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+35004710 83100878 96439870 
+> quantile(ser07$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1170000 0.1224712 0.2296715 
+> quantile(ser07$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+25586360 43070906 56608253 
+> quantile(ser07$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.0152420 0.0161175 0.0197398 
+> quantile(ser07$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+ 5.837333  8.604312 13.479443 
 _______________________________________________________________
