@@ -1249,3 +1249,64 @@ _______________________________________________________________
       90%       95%       99% 
  5.837333  8.604312 13.479443 
 _______________________________________________________________
+
+> print(mean(ndt_tests$download_throughput_bps))
+[1] 506299566
+> print(mean(ndt_tests$rtt_download_sec))
+[1] 0.04844667
+> print(mean(ndt_tests$upload_throughput_bps))
+[1] 378160721
+> print(mean(ndt_tests$rtt_upload_sec))
+[1] 0.03719372
+> print(mean(ndt_tests$packet_loss_percent))
+[1] 1.899137
+
+> print(median(ndt_tests$download_throughput_bps))
+[1] 596092746
+> print(median(ndt_tests$rtt_download_sec))
+[1] 0.011549
+> print(median(ndt_tests$upload_throughput_bps))
+[1] 297924162
+> print(median(ndt_tests$rtt_upload_sec))
+[1] 0.010858
+> print(median(ndt_tests$packet_loss_percent))
+[1] 0.1897709
+
+> print(var(ndt_tests$download_throughput_bps))
+[1] 1.123677e+17
+> print(var(ndt_tests$rtt_download_sec))
+[1] 0.004604779
+> print(var(ndt_tests$upload_throughput_bps))
+[1] 9.084776e+16
+> print(var(ndt_tests$rtt_upload_sec))
+[1] 0.004036995
+> print(var(ndt_tests$packet_loss_percent))
+[1] 11.90209
+
+> print(sd(ndt_tests$download_throughput_bps))
+[1] 335212940
+> print(sd(ndt_tests$rtt_download_sec))
+[1] 0.06785852
+> print(sd(ndt_tests$upload_throughput_bps))
+[1] 301409629
+> print(sd(ndt_tests$rtt_upload_sec))
+[1] 0.06353735
+> print(sd(ndt_tests$packet_loss_percent))
+[1] 3.449941
+
+> quantile(ndt_tests$download_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+27295283 77177802 86077102 
+> quantile(ndt_tests$rtt_download_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1221412 0.2202430 0.2332918 
+> quantile(ndt_tests$upload_throughput_bps, probs = c(1, 5, 10) / 100, na.rm = TRUE)
+      1%       5%      10% 
+15600839 37213154 45400514 
+> quantile(ndt_tests$rtt_upload_sec, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+0.1198444 0.2198265 0.2365300 
+> quantile(ndt_tests$packet_loss_percent, probs = c(90, 95, 99) / 100, na.rm = TRUE)
+      90%       95%       99% 
+ 6.295003  9.249118 18.127856 
+_______________________________________________________________
