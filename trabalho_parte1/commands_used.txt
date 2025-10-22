@@ -1310,3 +1310,13 @@ _______________________________________________________________
       90%       95%       99% 
  6.295003  9.249118 18.127856 
 _______________________________________________________________
+
+> dataCli07 = c(
++     mean(cli11$download_throughput_bps),
++     mean(cli11$rtt_download_sec),
++     mean(cli11$upload_throughput_bps),
++     mean(cli11$rtt_upload_sec),
++     mean(cli11$packet_loss_percent))
+> print(dataCli07)
+[1] 5.046348e+08 1.288279e-02 2.673941e+08 1.522288e-02 1.197161e+00
+
