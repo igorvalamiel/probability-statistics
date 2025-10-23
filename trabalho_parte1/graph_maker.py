@@ -23,12 +23,12 @@ metric_names = [
 ]
 
 # Criar DataFrame
-df = pd.DataFrame({
+dfCli11 = pd.DataFrame({
     'Metric': metric_names,
     'Mean': Cli11mean,
     'Median': Cli11median,
     'Variance': Cli11var,
-    'Standard Deviation': Cli11sd,
+    'Std. Deviation': Cli11sd,
     'Quantis 1%': Cli11q1,
     'Quantis 5%': Cli11q5,
     'Quantis 95%': Cli11q95,
@@ -36,8 +36,7 @@ df = pd.DataFrame({
 })
 
 print("=================== Table Client 11 ===================")
-print(df)
-
+print(dfCli11)
 
 # =================== Creating Table Server 07 ===================
 # data
@@ -60,12 +59,12 @@ metric_names = [
 ]
 
 # Criar DataFrame
-df = pd.DataFrame({
+dfSer07 = pd.DataFrame({
     'Metric': metric_names,
     'Mean': Ser07mean,
     'Median': Ser07median,
     'Variance': Ser07var,
-    'Standard Deviation': Ser07sd,
+    'Std. Deviation': Ser07sd,
     'Quantis 1%': Ser07q1,
     'Quantis 5%': Ser07q5,
     'Quantis 95%': Ser07q95,
@@ -73,4 +72,54 @@ df = pd.DataFrame({
 })
 
 print("=================== Table Server 07 ===================")
-print(df)
+print(dfSer07)
+
+
+# ========================================================================================================================
+# Creating function to create graphs
+
+def double_compare_histogram(metric, data1, data2, label1, label2):
+    #creating table of metrics to compare
+    compare = ['Mean', 'Median', 'Variance', 'Std. Deviation', 'Quantis 1%', 'Quantis 5%', 'Quantis 95%', 'Quantis 99%']
+
+    #filtering values
+    data1_values = [data1[m].iloc[0] for m in metric if data1[m].iloc[0] > 0]
+    data2_values = [data2[m].iloc[0] for m in metric if data2[m].iloc[0] > 0]
+    data1_labels = [m for m in metric if data1[m].iloc[0] > 0]
+    data2_labels = [m for m in metric if data2[m].iloc[0] > 0]
+
+    plt.figure(figsize=(20,6))
+
+    #configuring bar positions
+    bar = np.arange(len(label1))
+    width = 0.35
+
+    #criating bars
+    plt.bar(bar - width/2, data1_values, width, label=data1_labels, alpha=0.7, color='green')
+    plt.bar(bar + width/2, data2_values, width, label=data2_labels, alpha=0.7, color='orange')
+
+    #configuring the graph
+    plt.title(f"Comparação: {metric}", fontsize=14, fontweight='bold')
+    plt.xlabel('Estatísticas')
+    plt.ylabel('Valores')
+    plt.xticks(bar, data1_labels, rotation=45)
+    plt.legend()
+    plt.grid(axis='y', alpha=0.3)
+
+    #adding values to the bars
+    for i, v in enumerate(data1_values):
+        plt.text(i - width/2, v, f'{v:.2e}', ha='center', va='bottom', fontsize=8)
+    for i, v in enumerate(data2_values):
+        plt.text(i + width/2, v, f'{v:.2e}', ha='center', va='bottom', fontsize=8)
+    
+    plt.tight_layout()
+    plt.show()
+
+#creating each histogram
+metrics = ['Download Throughput (bps)', 'RTT Download (sec)', 'Upload Throughput (bps)', 'RTT Upload (sec)', 'Packet Loss (%)']
+
+for met in metrics:
+    clientData = dfCli11[dfCli11['Metric'] == met]
+    serverData = dfSer07[dfSer07['Metric'] == met]
+
+    double_compare_histogram(met, clientData, serverData, "Client 11", "Server 07")
