@@ -65,11 +65,14 @@ def histogram_double(data1, data2, binNum, title, xline, yline, graphSize=(12,6)
     plt.legend(loc='upper right') # captions position
     plt.grid(axis='y', alpha=0.3)
 
+    #optional: using y-axis as logarithm
+    plt.yscale('log')
+
     # showing the histogram
     plt.show()
 
-histogram_double(cli11dt, ser07dt, 40, "Download Throughput (bps)", "bps", "Frequency", (16,8))
+#histogram_double(cli11dt, ser07dt, 40, "Download Throughput (bps)", "bps", "Frequency", (16,8))
 #histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequency", (16,8))
 #histogram_double(cli11ut, ser07ut, 40, "RTT Download (sec)", "sec", "Frequency", (16,8))
 #histogram_double(cli11ut, ser07ut, 40, "RTT Upload (sec)", "sec", "Frequency", (16,8))
-#histogram_double(cli11ut, ser07ut, 40, "Packet Loss (%)", "percent", "Frequency", (16,8))
+histogram_double(cli11ut, ser07ut, 40, "Packet Loss (%)", "percent", "Frequency", (16,8))
