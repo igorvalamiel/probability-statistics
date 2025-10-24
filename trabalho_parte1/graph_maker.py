@@ -43,8 +43,8 @@ ser07pl = clean(ser07pl)
 
 # getting the max and the min in the x-line
 def get_borders(table1, table2):
-    a1, b1 = max(table1), max(table2)
-    a2, b2 = min(table1), min(table2)
+    a1, b1 = [max(table1), max(table2)]
+    a2, b2 = [min(table1), min(table2)]
     return [min(a2,b2), max(a1, b1)]
 
 # function to create the histogram graph
@@ -94,3 +94,26 @@ def histogram_double(data1, data2, binNum, title, xline, yline, graphSize=(12,6)
 #histogram_double(cli11pl, ser07pl, 40, "RTT Download (sec)", "sec", "Frequency", (16,8))
 #histogram_double(cli11rttd, ser07rttd, 40, "RTT Upload (sec)", "sec", "Frequency", (16,8))
 #histogram_double(cli11rttu, ser07rttu, 40, "Packet Loss (%)", "percent", "Frequency", (16,8))
+
+#===============================================================================================================================================================
+# creating the boxplot
+
+# function to create the boxplot
+def boxplot_double(data1, data2, name1, name2, title, yline, graphSize=(12,6)):
+    groupData = [data1, data2]
+    groupName = [name1, name2]
+
+    plt.figure(figsize=graphSize)
+    plt.boxplot(groupData, labels=groupName)
+    plt.title(title)
+    plt.ylabel(yline)
+    plt.grid(True, alpha=0.3)
+
+    plt.show()
+
+boxplot_double(cli11dt, ser07dt, "Cliente 11", "Servidor 07", "Download Throughput (bps)", "bps", (16,8))
+boxplot_double(cli11ut, ser07ut, "Cliente 11", "Servidor 07", "Upload Throughput (bps)", "bps", (16,8))
+boxplot_double(cli11pl, ser07pl, "Cliente 11", "Servidor 07", "RTT Download (sec)", "sec", (16,8))
+boxplot_double(cli11rttd, ser07rttd, "Cliente 11", "Servidor 07", "RTT Upload (sec)", "sec", (16,8))
+boxplot_double(cli11rttu, ser07rttu, "Cliente 11", "Servidor 07", "Packet Loss (%))", "%", (16,8))
+
