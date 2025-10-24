@@ -20,6 +20,24 @@ ser07ut = varSer07['ser07ut']
 ser07rttu = varSer07['ser07rttu']
 ser07pl = varSer07['ser07pl']
 
+# function to clean the list (exclude the negative numbers)
+def clean(l):
+    cleanL = [x for x in l if x >= 0]
+    return cleanL
+
+# cleaning the functions
+cli11dt = clean(cli11dt)
+cli11rttd = clean(cli11rttd)
+cli11ut = clean(cli11ut)
+cli11rttu = clean(cli11rttu)
+cli11pl = clean(cli11pl)
+
+ser07dt = clean(ser07dt)
+ser07rttd = clean(ser07rttd)
+ser07ut = clean(ser07ut)
+ser07rttu = clean(ser07rttu)
+ser07pl = clean(ser07pl)
+
 #===============================================================================================================================================================
 # creating the histogram
 
@@ -73,6 +91,8 @@ def histogram_double(data1, data2, binNum, title, xline, yline, graphSize=(12,6)
 
 #histogram_double(cli11dt, ser07dt, 40, "Download Throughput (bps)", "bps", "Frequency", (16,8))
 #histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequency", (16,8))
-#histogram_double(cli11ut, ser07ut, 40, "RTT Download (sec)", "sec", "Frequency", (16,8))
-#histogram_double(cli11ut, ser07ut, 40, "RTT Upload (sec)", "sec", "Frequency", (16,8))
-histogram_double(cli11ut, ser07ut, 40, "Packet Loss (%)", "percent", "Frequency", (16,8))
+#histogram_double(cli11pl, ser07pl, 40, "RTT Download (sec)", "sec", "Frequency", (16,8))
+#histogram_double(cli11rttd, ser07rttd, 40, "RTT Upload (sec)", "sec", "Frequency", (16,8))
+#histogram_double(cli11rttu, ser07rttu, 40, "Packet Loss (%)", "percent", "Frequency", (16,8))
+
+print(ser07rttd)
