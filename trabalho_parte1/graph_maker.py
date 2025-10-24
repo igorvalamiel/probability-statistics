@@ -104,6 +104,7 @@ def boxplot_double(data1, data2, name1, name2, title, yline, graphSize=(12,6)):
     groupName = [name1, name2]
 
     plt.figure(figsize=graphSize)
+    plt.yscale('log')
     plt.boxplot(groupData, labels=groupName)
     plt.title(title)
     plt.ylabel(yline)
@@ -111,11 +112,11 @@ def boxplot_double(data1, data2, name1, name2, title, yline, graphSize=(12,6)):
 
     plt.show()
 
-#boxplot_double(cli11dt, ser07dt, "Cliente 11", "Servidor 07", "Download Throughput (bps)", "bps", (16,8))
-#boxplot_double(cli11ut, ser07ut, "Cliente 11", "Servidor 07", "Upload Throughput (bps)", "bps", (16,8))
-#boxplot_double(cli11pl, ser07pl, "Cliente 11", "Servidor 07", "RTT Download (sec)", "sec", (16,8))
-#boxplot_double(cli11rttd, ser07rttd, "Cliente 11", "Servidor 07", "RTT Upload (sec)", "sec", (16,8))
-#boxplot_double(cli11rttu, ser07rttu, "Cliente 11", "Servidor 07", "Packet Loss (%)", "%", (16,8))
+boxplot_double(cli11dt, ser07dt, "Cliente 11", "Servidor 07", "Download Throughput (bps)", "bps", (16,8))
+boxplot_double(cli11ut, ser07ut, "Cliente 11", "Servidor 07", "Upload Throughput (bps)", "bps", (16,8))
+boxplot_double(cli11pl, ser07pl, "Cliente 11", "Servidor 07", "RTT Download (sec)", "sec", (16,8))
+boxplot_double(cli11rttd, ser07rttd, "Cliente 11", "Servidor 07", "RTT Upload (sec)", "sec", (16,8))
+boxplot_double(cli11rttu, ser07rttu, "Cliente 11", "Servidor 07", "Packet Loss (%)", "%", (16,8))
 
 #===============================================================================================================================================================
 # creating the scatter plot
@@ -143,5 +144,5 @@ def scatterPlot_double(v1, v2, title, xname, yname, graphSize=(12,6)):
     plt.grid(True, alpha=0.3)
     plt.show()
     
-scatterPlot_double(cli11dt, cli11pl, "Cliente 11 - Download Throughput x Packet Loss", "Download Throughput", "Packet Loss", (16,8))
-scatterPlot_double(ser07dt, ser07pl, "Servidor 07 - Download Throughput x Packet Loss", "Download Throughput", "Packet Loss", (16,8))
+#scatterPlot_double(cli11dt, cli11pl, "Cliente 11 - Download Throughput x Packet Loss", "Download Throughput", "Packet Loss", (16,8))
+#scatterPlot_double(ser07dt, ser07pl, "Servidor 07 - Download Throughput x Packet Loss", "Download Throughput", "Packet Loss", (16,8))
