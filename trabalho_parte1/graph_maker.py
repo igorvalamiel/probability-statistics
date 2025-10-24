@@ -94,5 +94,3 @@ def histogram_double(data1, data2, binNum, title, xline, yline, graphSize=(12,6)
 #histogram_double(cli11pl, ser07pl, 40, "RTT Download (sec)", "sec", "Frequency", (16,8))
 #histogram_double(cli11rttd, ser07rttd, 40, "RTT Upload (sec)", "sec", "Frequency", (16,8))
 #histogram_double(cli11rttu, ser07rttu, 40, "Packet Loss (%)", "percent", "Frequency", (16,8))
-
-print(ser07rttd)
