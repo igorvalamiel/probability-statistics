@@ -62,7 +62,7 @@ def histogram_double(data1, data2, binNum, title, xline, yline, graphSize=(12,6)
         bins=b,             # setting the separation
         alpha=0.6,          # setting the "transparency" to see the other graph
         label="Cliente 11",  # naming the data
-        color='green',      # coloring the data
+        color='#00B30E',      # coloring the data
         edgecolor='black'   # coloring the border
     )
 
@@ -72,7 +72,7 @@ def histogram_double(data1, data2, binNum, title, xline, yline, graphSize=(12,6)
         bins=b,             # setting the separation
         alpha=0.6,          # setting the "transparency" to see the other graph
         label="Servidor 07",  # naming the data
-        color='orange',      # coloring the data
+        color='#E88300',      # coloring the data
         edgecolor='black'   # coloring the border
     )
     
@@ -111,9 +111,45 @@ def boxplot_double(data1, data2, name1, name2, title, yline, graphSize=(12,6)):
 
     plt.show()
 
-boxplot_double(cli11dt, ser07dt, "Cliente 11", "Servidor 07", "Download Throughput (bps)", "bps", (16,8))
-boxplot_double(cli11ut, ser07ut, "Cliente 11", "Servidor 07", "Upload Throughput (bps)", "bps", (16,8))
-boxplot_double(cli11pl, ser07pl, "Cliente 11", "Servidor 07", "RTT Download (sec)", "sec", (16,8))
-boxplot_double(cli11rttd, ser07rttd, "Cliente 11", "Servidor 07", "RTT Upload (sec)", "sec", (16,8))
-boxplot_double(cli11rttu, ser07rttu, "Cliente 11", "Servidor 07", "Packet Loss (%))", "%", (16,8))
+#boxplot_double(cli11dt, ser07dt, "Cliente 11", "Servidor 07", "Download Throughput (bps)", "bps", (16,8))
+#boxplot_double(cli11ut, ser07ut, "Cliente 11", "Servidor 07", "Upload Throughput (bps)", "bps", (16,8))
+#boxplot_double(cli11pl, ser07pl, "Cliente 11", "Servidor 07", "RTT Download (sec)", "sec", (16,8))
+#boxplot_double(cli11rttd, ser07rttd, "Cliente 11", "Servidor 07", "RTT Upload (sec)", "sec", (16,8))
+#boxplot_double(cli11rttu, ser07rttu, "Cliente 11", "Servidor 07", "Packet Loss (%)", "%", (16,8))
 
+#===============================================================================================================================================================
+# creating the scatter plot
+
+# function to create the scatter plot
+def scatterPlot_double(v1, v2, name1, name2, title, xname, yname, graphSize=(12,6)):
+
+    pointsNum = min(len(v1), len(v2))
+    var1 = np.array(v1[:pointsNum])
+    var2 = np.array(v2[:pointsNum])
+    category = np.random.choice([name1, name2], pointsNum)
+
+    #setting configurations
+    plt.figure(figsize=graphSize)
+    colors = ['#00B30E', '#E88300']
+
+    #creating the graph
+    for i, cat in enumerate(np.unique(category)):
+        mask = category == cat
+        plt.scatter(var1[mask], var2[mask], c=colors[i], label=cat, alpha=0.6, s=40)
+    
+    #creating the linear
+    slope, intercept = np.polyfit(var1, var2, 1)
+    plt.plot(var1, slope*var1+intercept, 'g-', linewidth=1.5)
+
+    plt.title(title)
+    plt.xlabel(xname)
+    plt.ylabel(yname)
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.show()
+
+#scatterPlot_double(cli11dt, cli11pl, "Download Throughput", "Packet Loss", "Client 11", "bps", "%", (16,8))
+#scatterPlot_double(ser07dt, ser07pl, "Download Throughput", "Packet Loss", "Server 07", "bps", "%", (16,8))
+
+#scatterPlot_double(cli11dt, ser07dt, "Cliente 11", "Servidor 07", "Download Throughput", "bps", "%", (16,8))
+scatterPlot_double(cli11pl, ser07pl, "Cliente 11", "Servidor 07", "Packet Loss", "bps", "%", (16,8))
