@@ -121,35 +121,27 @@ def boxplot_double(data1, data2, name1, name2, title, yline, graphSize=(12,6)):
 # creating the scatter plot
 
 # function to create the scatter plot
-def scatterPlot_double(v1, v2, name1, name2, title, xname, yname, graphSize=(12,6)):
-
+def scatterPlot_double(v1, v2, title, xname, yname, graphSize=(12,6)):
+    #treating the data entry
     pointsNum = min(len(v1), len(v2))
     var1 = np.array(v1[:pointsNum])
     var2 = np.array(v2[:pointsNum])
-    category = np.random.choice([name1, name2], pointsNum)
 
-    #setting configurations
+    #setting the figure
     plt.figure(figsize=graphSize)
-    colors = ['#00B30E', '#E88300']
 
-    #creating the graph
-    for i, cat in enumerate(np.unique(category)):
-        mask = category == cat
-        plt.scatter(var1[mask], var2[mask], c=colors[i], label=cat, alpha=0.6, s=40)
-    
-    #creating the linear
-    slope, intercept = np.polyfit(var1, var2, 1)
-    plt.plot(var1, slope*var1+intercept, 'g-', linewidth=1.5)
+    #adjusting for logarithm
+    plt.xscale('log')
+    plt.yscale('log')
 
+    #plotting the graph
+    plt.scatter(var1, var2, c='#00B30E', edgecolors='black', alpha=0.6, s=40)
     plt.title(title)
     plt.xlabel(xname)
     plt.ylabel(yname)
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.show()
-
-#scatterPlot_double(cli11dt, cli11pl, "Download Throughput", "Packet Loss", "Client 11", "bps", "%", (16,8))
-#scatterPlot_double(ser07dt, ser07pl, "Download Throughput", "Packet Loss", "Server 07", "bps", "%", (16,8))
-
-#scatterPlot_double(cli11dt, ser07dt, "Cliente 11", "Servidor 07", "Download Throughput", "bps", "%", (16,8))
-scatterPlot_double(cli11pl, ser07pl, "Cliente 11", "Servidor 07", "Packet Loss", "bps", "%", (16,8))
+    
+scatterPlot_double(cli11dt, cli11pl, "Cliente 11 - Download Throughput x Packet Loss", "Download Throughput", "Packet Loss", (16,8))
+scatterPlot_double(ser07dt, ser07pl, "Servidor 07 - Download Throughput x Packet Loss", "Download Throughput", "Packet Loss", (16,8))
