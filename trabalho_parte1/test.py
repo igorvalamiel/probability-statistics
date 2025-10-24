@@ -68,4 +68,8 @@ def histogram_double(data1, data2, binNum, title, xline, yline, graphSize=(12,6)
     # showing the histogram
     plt.show()
 
-histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequancy", (16,8))
+#histogram_double(cli11dt, ser07dt, 40, "Download Throughput (bps)", "bps", "Frequancy", (16,8))
+#histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequancy", (16,8))
+#histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequancy", (16,8))
+#histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequancy", (16,8))
+#histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequancy", (16,8))
