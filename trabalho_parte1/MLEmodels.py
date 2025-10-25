@@ -133,3 +133,73 @@ class Gamma():
 #GamSer07UT.MLE_Gamma("Upload Throughput", "Servidor 07 - Upload Throughput - Distribuição Gamma", (10,7))
 #GamSer07UT.QQplot(0.01, 0.05, "Servidor 07 - Upload Throughput - Distribuição Gamma", (10,7))
 
+# =========================================================================================================================================
+# Calculing Normal MLE
+
+class Normal():
+    def __init__(self, data):
+        # seeting initial data and getting mu & sigma
+        self.normalData = np.array(data)
+        self.mu_mle = np.mean(self.normalData)
+        self.sigma_mle = np.std(self.normalData, ddof=0)
+        print(f"Parâmetros MLE: μ = {self.mu_mle}, σ = {self.sigma_mle}")
+    
+    # creating the MLE Normal Graph
+    def MLE_Normal(self, xname, title, graphSize=(12,6)):
+        # getting size
+        plt.figure(figsize=graphSize)
+
+        # plotting histogram
+        plt.hist(self.normalData, bins=40, density=True, alpha=0.7, color='#00B30E', edgecolor='black', label='PDF['+xname+']')
+
+        # platting the Normal line
+        x = np.linspace(self.mu_mle - 4*self.sigma_mle, self.mu_mle + 4*self.sigma_mle, 1000)
+        pdf_vals = stats.norm.pdf(x, self.mu_mle, self.sigma_mle)
+        plt.plot(x, pdf_vals, '#E88300', linewidth=2.5, label=f'Normal(μ={self.mu_mle:.4f}, σ={self.sigma_mle:.4f})')
+    
+        #finishing the graph
+        plt.xlabel(xname, fontsize=12)
+        plt.title(title, fontsize=14)
+        plt.legend(fontsize=11)
+        plt.grid(True, alpha=0.3)
+        plt.show()
+    
+    # Creating the QQplot Graph
+    def QQplot(self, quantiA, quantiB, title, graphSize=(12,6)):
+        #getting size
+        plt.figure(figsize=graphSize)
+
+        #getting basic data
+        TeoricQuant = stats.norm.ppf(np.linspace(quantiA, quantiB, len(self.normalData)), self.mu_mle, self.sigma_mle)
+        AmostrQuant = np.sort(self.normalData)
+
+        #creating the graph and the linear
+        plt.scatter(TeoricQuant, AmostrQuant, alpha=0.7, color='#00B30E', label="Dados Reais x Ajuste Normal")
+        plt.plot([TeoricQuant.min(), TeoricQuant.max()], [TeoricQuant.min(), TeoricQuant.max()], "#E88300", linewidth=2, label='Linha de Referência (y=x)')
+
+        # plotting the graph
+        plt.xlabel('Quantis Teóricos - Normal Ajustada')
+        plt.ylabel('Quantis Amostrais - Dados Reais')
+        plt.title(title)
+        plt.legend()
+        plt.grid(alpha=0.3)
+        plt.yscale('log')
+        plt.xscale('log')
+        #plt.axis('equal')
+        plt.show()
+
+        #Calculating the Pearson Correaltion to verify if the model is great
+        correlation, _ = stats.pearsonr(TeoricQuant, AmostrQuant)
+        pears = correlation**2
+
+        print(f"Coeficiente de Determinação (R²) do QQ plot: {pears}")
+        if pears > 0.95:
+            print("Bom ajuste.")
+        elif pears > 0.90:
+            print("Ajuste razoável.")
+        else:
+            print("Ajuste ruim.")
+
+NorCli11DT = Normal(cli11rttd)
+NorCli11DT.MLE_Normal("RTT Download", "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
+NorCli11DT.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
