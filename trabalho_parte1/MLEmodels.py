@@ -44,40 +44,49 @@ ser07pl = clean(ser07pl)
 # =========================================================================================================================================
 # Calculing Gamma MLE
 
-def MLE_Gamma(data, xname, title, graphSize=(12,6)):
-    # getting k and theta
-    gammaData = np.array(data)
-    k_mle, loc_mle, theta_mle = stats.gamma.fit(gammaData, floc=0)
-    print(f"Parâmetros MLE estimados: k = {k_mle}, loc = {loc_mle} , θ = {theta_mle}\n")
-    
-    # Defining "borders" -> Gamma is defined fo x > 0
-    x_min = max(0, gammaData.min()) # We have to make this to ajust the inferior border
-    x_max = gammaData.max()# We have to make this to ajust the superior border
-    x_grid = np.linspace(x_min, x_max, 1000)
+class Gamma():
+    def __init__(self, data):
+        # getting k and theta
+        self.gammaData = np.array(data)
+        self.k_mle, self.loc_mle, self.theta_mle = stats.gamma.fit(self.gammaData, floc=0)
+        print(f"Parâmetros MLE estimados: k = {self.k_mle}, loc = {self.loc_mle} , θ = {self.theta_mle}\n")
 
-    # Creating the PDF
-    pdf_gamma = stats.gamma.pdf(x_grid, k_mle, loc_mle, theta_mle)
+    def MLE_Gamma(self, xname, title, graphSize=(12,6)):
+        # Defining "borders" -> Gamma is defined fo x > 0
+        x_min = max(0, self.gammaData.min()) # We have to make this to ajust the inferior border
+        x_max = self.gammaData.max()# We have to make this to ajust the superior border
+        x_grid = np.linspace(x_min, x_max, 1000)
 
-    #setting the size
-    plt.figure(figsize=graphSize)
+        # Creating the PDF
+        pdf_gamma = stats.gamma.pdf(x_grid, self.k_mle, self.loc_mle, self.theta_mle)
 
-    #creating the histogram
-    plt.hist(gammaData, bins=40, density=True, alpha=0.7, color='#00B30E', label='PDF['+xname+']', edgecolor='black', zorder=1)
+        #setting the size
+        plt.figure(figsize=graphSize)
 
-    #creating the gamma function
-    plt.plot(x_grid, pdf_gamma, '#E88300', linewidth=2.5, label=f'Gamma Ajustada (k={k_mle:.3f}, θ={theta_mle:.3f})', zorder=2)
+        #creating the histogram
+        plt.hist(self.gammaData, bins=40, density=True, alpha=0.7, color='#00B30E', label='PDF['+xname+']', edgecolor='black', zorder=1)
 
-    #creating the graph
-    plt.xlabel(xname, fontsize=12)
-    plt.title(title, fontsize=14)
-    plt.legend(fontsize=11)
-    plt.grid(alpha=0.3, zorder=0)
-    plt.tight_layout()
-    plt.yscale('log')
+        #creating the gamma function
+        plt.plot(x_grid, pdf_gamma, '#E88300', linewidth=2.5, label=f'Gamma Ajustada (k={self.k_mle:.3f}, θ={self.theta_mle:.3f})', zorder=2)
 
-    plt.show()
+        #creating the graph
+        plt.xlabel(xname, fontsize=12)
+        plt.title(title, fontsize=14)
+        plt.legend(fontsize=11)
+        plt.grid(alpha=0.3, zorder=0)
+        plt.tight_layout()
+        plt.yscale('log')
 
-#MLE_Gamma(cli11dt, "Download Throughput", "Cliente 11 - Download Throughput - Distribuição Gamma", (14,7))
-#MLE_Gamma(ser07dt, "Download Throughput", "Servidor 07 - Download Throughput - Distribuição Gamma", (14,7))
-MLE_Gamma(cli11ut, "Upload Throughput", "Cliente 11 - Upload Throughput - Distribuição Gamma", (14,7))
-MLE_Gamma(ser07ut, "Upload Throughput", "Servidor 07 - Upload Throughput - Distribuição Gamma", (14,7))
+        plt.show()
+
+GamCli11DT = Gamma(cli11dt)
+GamCli11DT.MLE_Gamma("Download Throughput", "Cliente 11 - Download Throughput - Distribuição Gamma", (14,7))
+
+GamSer07DT = Gamma(ser07dt)
+GamSer07DT.MLE_Gamma("Download Throughput", "Servidor 07 - Download Throughput - Distribuição Gamma", (14,7))
+
+GamCli11UT = Gamma(cli11ut)
+GamCli11UT.MLE_Gamma("Upload Throughput", "Cliente 11 - Upload Throughput - Distribuição Gamma", (14,7))
+
+GamSer07UT = Gamma(ser07ut)
+GamSer07UT.MLE_Gamma("Upload Throughput", "Servidor 07 - Upload Throughput - Distribuição Gamma", (14,7))
