@@ -51,6 +51,7 @@ class Gamma():
         self.k_mle, self.loc_mle, self.theta_mle = stats.gamma.fit(self.gammaData, floc=0)
         print(f"Parâmetros MLE estimados: k = {self.k_mle}, loc = {self.loc_mle} , θ = {self.theta_mle}\n")
 
+    # creating the MLE Gamma graph
     def MLE_Gamma(self, xname, title, graphSize=(12,6)):
         # Defining "borders" -> Gamma is defined fo x > 0
         x_min = max(0, self.gammaData.min()) # We have to make this to ajust the inferior border
@@ -78,15 +79,57 @@ class Gamma():
         plt.yscale('log')
 
         plt.show()
+    
+    # Creating the QQplot graph
+    def QQplot(self, quantiA, quantiB, title, graphSize=(12,6)):
+        #getting size
+        plt.figure(figsize=graphSize)
 
-GamCli11DT = Gamma(cli11dt)
-GamCli11DT.MLE_Gamma("Download Throughput", "Cliente 11 - Download Throughput - Distribuição Gamma", (14,7))
+        #getting basic data
+        TeoricQuant = stats.gamma.ppf(np.linspace(quantiA, quantiB, len(self.gammaData)), self.k_mle, self.loc_mle, self.theta_mle)
+        AmostrQuant = np.sort(self.gammaData)
 
-GamSer07DT = Gamma(ser07dt)
-GamSer07DT.MLE_Gamma("Download Throughput", "Servidor 07 - Download Throughput - Distribuição Gamma", (14,7))
+        #creating the graph and the linear
+        plt.scatter(TeoricQuant, AmostrQuant, alpha=0.7, color='#00B30E', label="Dados Reais x Ajuste Gamma")
+        plt.plot([TeoricQuant.min(), TeoricQuant.max()], [TeoricQuant.min(), TeoricQuant.max()], "#E88300", linewidth=2, label='Linha de Referência (y=x)')
 
-GamCli11UT = Gamma(cli11ut)
-GamCli11UT.MLE_Gamma("Upload Throughput", "Cliente 11 - Upload Throughput - Distribuição Gamma", (14,7))
+        # plotting the graph
+        plt.xlabel('Quantis Teóricos - Gamma Ajustada')
+        plt.ylabel('Quantis Amostrais - Dados Reais')
+        plt.title(title)
+        plt.legend()
+        plt.grid(alpha=0.3)
+        plt.yscale('log')
+        plt.xscale('log')
+        #plt.axis('equal')
+        plt.show()
 
-GamSer07UT = Gamma(ser07ut)
-GamSer07UT.MLE_Gamma("Upload Throughput", "Servidor 07 - Upload Throughput - Distribuição Gamma", (14,7))
+        #Calculating the Pearson Correaltion to verify if the model is great
+        correlation, _ = stats.pearsonr(TeoricQuant, AmostrQuant)
+        pears = correlation**2
+
+        print(f"Coeficiente de Determinação (R²) do QQ plot: {pears}")
+        if pears > 0.95:
+            print("Bom ajuste.")
+        elif pears > 0.90:
+            print("Ajuste razoável.")
+        else:
+            print("Ajuste ruim.")
+
+
+#GamCli11DT = Gamma(cli11dt)
+#GamCli11DT.MLE_Gamma("Download Throughput", "Cliente 11 - Download Throughput - Distribuição Gamma", (10,7))
+#GamCli11DT.QQplot(0.01, 0.05, "Cliente 11 - Download Throughput - Distribuição Gamma", (10,7))
+
+#GamSer07DT = Gamma(ser07dt)
+#GamSer07DT.MLE_Gamma("Download Throughput", "Servidor 07 - Download Throughput - Distribuição Gamma", (10,7))
+#GamSer07DT.QQplot(0.01, 0.05, "Servidor 07 - Download Throughput - Distribuição Gamma", (10,7))
+
+#GamCli11UT = Gamma(cli11ut)
+#GamCli11UT.MLE_Gamma("Upload Throughput", "Cliente 11 - Upload Throughput - Distribuição Gamma", (10,7))
+#GamCli11UT.QQplot(0.01, 0.05, "Cliente 11 - Upload Throughput - Distribuição Gamma", (10,7))
+
+#GamSer07UT = Gamma(ser07ut)
+#GamSer07UT.MLE_Gamma("Upload Throughput", "Servidor 07 - Upload Throughput - Distribuição Gamma", (10,7))
+#GamSer07UT.QQplot(0.01, 0.05, "Servidor 07 - Upload Throughput - Distribuição Gamma", (10,7))
+

@@ -16,11 +16,21 @@
 
 Cl11DT_gamma
 Parâmetros MLE estimados: k = 2.068843123877114, loc = 0 , θ = 243921233.312949
-Cli11UT_gamma
-Parâmetros MLE estimados: k = 1.6047917342609985, loc = 0 , θ = 166622310.1972985
+Coeficiente de Determinação (R²) do QQ plot: 0.8547965549862594
+Ajuste ruim.
+
 Ser07DT_gamma
 Parâmetros MLE estimados: k = 1.7674622620315197, loc = 0 , θ = 331284082.6721407
+Coeficiente de Determinação (R²) do QQ plot: 0.9253325407368654
+Ajuste razoável.
+
+Cli11UT_gamma
+Parâmetros MLE estimados: k = 1.6047917342609985, loc = 0 , θ = 166622310.1972985
+Coeficiente de Determinação (R²) do QQ plot: 0.808243820129435
+Ajuste ruim.
+
 Ser07UT_gamma
 Parâmetros MLE estimados: k = 1.349178536619483, loc = 0 , θ = 332902440.99486977
-
+Coeficiente de Determinação (R²) do QQ plot: 0.964697053881432
+Bom ajuste.
 
