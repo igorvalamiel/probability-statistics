@@ -12,3 +12,15 @@
 2    Upload Throughput (bps)  4.491448e+08  5.132518e+08  9.297521e+16        3.049184e+08  25586360.0  43070910.0     0.000000     0.000000
 3           RTT Upload (sec)  7.644065e-03  5.448000e-03  2.620936e-05        5.119508e-03         0.0         0.0     0.016117     0.019740
 4            Packet Loss (%)  1.665324e+00  8.924578e-02  9.697489e+00        3.114079e+00         0.0         0.0     8.604312    13.479440
+
+
+Cl11DT_gamma
+Parâmetros MLE estimados: k = 2.068843123877114, loc = 0 , θ = 243921233.312949
+Cli11UT_gamma
+Parâmetros MLE estimados: k = 1.6047917342609985, loc = 0 , θ = 166622310.1972985
+Ser07DT_gamma
+Parâmetros MLE estimados: k = 1.7674622620315197, loc = 0 , θ = 331284082.6721407
+Ser07UT_gamma
+Parâmetros MLE estimados: k = 1.349178536619483, loc = 0 , θ = 332902440.99486977
+
+
