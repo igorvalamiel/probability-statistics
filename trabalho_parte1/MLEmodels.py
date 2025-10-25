@@ -191,7 +191,7 @@ class Normal():
         correlation, _ = stats.pearsonr(TeoricQuant, AmostrQuant)
         r2 = correlation**2
 
-        print(f"Coeficiente de Determinação (R²) do QQ plot: {r2:.4f}")
+        print(f"Coeficiente de Determinação (R²) do QQ plot: {r2}")
         if r2 > 0.95:
             print("Bom ajuste.")
         elif r2 > 0.90:
@@ -199,19 +199,19 @@ class Normal():
         else:
             print("Ajuste ruim.")
 
-#NorCli11RTTD = Normal(cli11rttd)
+NorCli11RTTD = Normal(cli11rttd)
 #NorCli11RTTD.MLE_Normal("RTT Download", "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
-#NorCli11RTTD.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
+NorCli11RTTD.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
 
-#NorSer07RTTD = Normal(ser07rttd)
+NorSer07RTTD = Normal(ser07rttd)
 #NorSer07RTTD.MLE_Normal("RTT Download", "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
-#NorSer07RTTD.QQplot(0.95, 0.99, "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
+NorSer07RTTD.QQplot(0.95, 0.99, "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
 
-#NorCli11RTTU = Normal(cli11rttu)
+NorCli11RTTU = Normal(cli11rttu)
 #NorCli11RTTU.MLE_Normal("RTT Upload", "Cliente 11 - RTT Upload - Distribuição Normal", (10,7))
-#NorCli11RTTU.QQplot(0.95, 0.99, "Cliente 11 - RTT Upload - Distribuição Normal", (10,7))
+NorCli11RTTU.QQplot(0.95, 0.99, "Cliente 11 - RTT Upload - Distribuição Normal", (10,7))
 
-#NorSer07RTTU = Normal(ser07rttu)
+NorSer07RTTU = Normal(ser07rttu)
 #NorSer07RTTU.MLE_Normal("RTT Upload", "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
-#NorSer07RTTU.QQplot(0.95, 0.99, "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
+NorSer07RTTU.QQplot(0.95, 0.99, "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
 
