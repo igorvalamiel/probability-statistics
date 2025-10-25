@@ -44,55 +44,40 @@ ser07pl = clean(ser07pl)
 # =========================================================================================================================================
 # Calculing Gamma MLE
 
-def MLE_Gamma(data):
+def MLE_Gamma(data, graphSize=(12,6)):
     # getting k and theta
     gammaData = np.array(data)
     k_mle, loc_mle, theta_mle = stats.gamma.fit(gammaData)
     print(f"Parâmetros MLE estimados: k = {k_mle:.4f}, θ = {theta_mle:.4f}\n")
     
-    #
-    df = pd.DataFrame({'gammaData': gammaData})
+    # Defining "borders" -> Gamma is defined fo x > 0
+    x_min = max(0, gammaData.min()) # We have to make this to ajust the inferior border
+    x_max = gammaData.max() # We have to make this to ajust the superior border
+    x_grid = np.linspace(x_min, x_max, 1000)
 
-    # Calcular o valor da PDF da Gamma ajustada PARA CADA PONTO de dado
-    df['pdf_ajustada'] = stats.gamma.pdf(
-        df['gammaData'],    # O valor 'x'
-        a=k_mle,              # O parâmetro 'k' (shape) ajustado
-        scale=theta_mle       # O parâmetro 'θ' (scale) ajustado
-    )
+    # Creating the PDF
+    pdf_gamma = stats.gamma.pdf(x_grid, k_mle, loc_mle, theta_mle)
 
-    # Ordenar os dados (opcional, bom para inspecionar)
-    df = df.sort_values(by='gammaData')
+    #setting the size
+    plt.figure(figsize=graphSize)
 
-    # Exibir os dados "guardados em conjunto"
-    print("DataFrame com dados e valores da PDF ajustada:")
-    print(df.head())
+    #creating the histogram
+    plt.hist(gammaData, bins=40, density=True, alpha=0.7, color='#00B30E', label='Dados Reais (Float)', edgecolor='black', zorder=1)
 
+    #creating the gamma function
+    plt.plot(x_grid, pdf_gamma, '#E88300', linewidth=2.5, label=f'Gamma Ajustada (k={k_mle:.3f}, θ={theta_mle:.3f})', zorder=2)
 
-    # --- 3. Visualizar o Ajuste (Histograma vs PDF) ---
+    #creating the graph
+    plt.xlabel('Valor', fontsize=12)
+    plt.ylabel('Densidade de Probabilidade', fontsize=12)
+    plt.title('Comparação: Dados Float vs Distribuição Gamma Ajustada (MLE)', fontsize=14)
+    plt.legend(fontsize=11)
+    plt.grid(alpha=0.3, zorder=0)
+    plt.tight_layout()
+    #plt.yscale('log')
 
-    print("\nGerando gráfico de ajuste (Histograma vs PDF)...")
-
-    # Configurar o plot
-    # Criar grid para a PDF
-    x_grid = np.linspace(min(gammaData), max(gammaData), 1000)
-    pdf_teorica = stats.norm.pdf(x_grid, k_mle, theta_mle)
-
-    # Plotar
-    plt.figure(figsize=(10, 6))
-
-    # Histograma dos dados reais
-    plt.hist(gammaData, bins=30, density=True, alpha=0.7, 
-            color='lightblue', label='Dados Reais', edgecolor='black')
-
-    # PDF do modelo ajustado
-    plt.plot(x_grid, pdf_teorica, 'r-', linewidth=2, 
-            label=f'PDF Ajustada (μ={k_mle:.2f}, σ={theta_mle:.2f})')
-
-    plt.xlabel('Valor')
-    plt.ylabel('Densidade de Probabilidade')
-    plt.title('Comparação: Dados Reais vs Modelo Ajustado (MLE)')
-    plt.legend()
-    plt.grid(alpha=0.3)
     plt.show()
 
-MLE_Gamma(cli11ut)
+
+#MLE_Gamma(cli11dt)
+MLE_Gamma(ser07dt)
