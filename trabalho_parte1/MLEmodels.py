@@ -101,7 +101,6 @@ class Gamma():
         plt.grid(alpha=0.3)
         plt.yscale('log')
         plt.xscale('log')
-        #plt.axis('equal')
         plt.show()
 
         #Calculating the Pearson Correaltion to verify if the model is great
@@ -115,7 +114,6 @@ class Gamma():
             print("Ajuste razoável.")
         else:
             print("Ajuste ruim.")
-
 
 #GamCli11DT = Gamma(cli11dt)
 #GamCli11DT.MLE_Gamma("Download Throughput", "Cliente 11 - Download Throughput - Distribuição Gamma", (10,7))
@@ -169,20 +167,13 @@ class Normal():
 
         plt.figure(figsize=graphSize)
 
-        # Dados empíricos
-        data = np.sort(self.normalData)
-        n = len(data)
+        percentis = np.linspace(quantiA, quantiB, len(self.normalData))
 
-        # Probabilidades empíricas
-        p = (np.arange(1, n + 1) - 0.5) / n
-
-        # Quantis teóricos da Normal ajustada
-        TeoricQuant = stats.norm.ppf(p, self.mu_mle, self.sigma_mle)
-
-        # Seleciona intervalo de quantis (por exemplo, 0.95–0.99)
-        mask = (p >= quantiA) & (p <= quantiB)
-        TeoricQuant = TeoricQuant[mask]
-        AmostrQuant = data[mask]
+        # Quantis teóricos da distribuição Normal ajustada
+        TeoricQuant = stats.norm.ppf(percentis, self.mu_mle, self.sigma_mle)
+        
+        # Quantis amostrais dos dados reais
+        AmostrQuant = np.percentile(self.normalData, percentis * 100)
 
         # QQ-plot
         plt.scatter(TeoricQuant, AmostrQuant, alpha=0.7, color='#00B30E', label="Dados Reais x Ajuste Normal")
@@ -208,10 +199,9 @@ class Normal():
         else:
             print("Ajuste ruim.")
 
-
-NorCli11RTTD = Normal(cli11rttd)
+#NorCli11RTTD = Normal(cli11rttd)
 #NorCli11RTTD.MLE_Normal("RTT Download", "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
-NorCli11RTTD.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
+#NorCli11RTTD.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
 
 #NorSer07RTTD = Normal(ser07rttd)
 #NorSer07RTTD.MLE_Normal("RTT Download", "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
@@ -219,9 +209,9 @@ NorCli11RTTD.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Norm
 
 #NorCli11RTTU = Normal(cli11rttu)
 #NorCli11RTTU.MLE_Normal("RTT Upload", "Cliente 11 - RTT Upload - Distribuição Normal", (10,7))
-#NorCli11RTTU.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
+#NorCli11RTTU.QQplot(0.95, 0.99, "Cliente 11 - RTT Upload - Distribuição Normal", (10,7))
 
 #NorSer07RTTU = Normal(ser07rttu)
 #NorSer07RTTU.MLE_Normal("RTT Upload", "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
-#NorSer07RTTU.QQplot(0.95, 0.99, "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
+#NorSer07RTTU.QQplot(0.95, 0.99, "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
 

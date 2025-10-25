@@ -34,3 +34,22 @@ Parâmetros MLE estimados: k = 1.349178536619483, loc = 0 , θ = 332902440.99486
 Coeficiente de Determinação (R²) do QQ plot: 0.964697053881432
 Bom ajuste.
 
+Cl11RTTD_gamma
+Parâmetros MLE: μ = 0.012883026584867074, σ = 0.006238702528947186
+Coeficiente de Determinação (R²) do QQ plot: 0.5974
+Ajuste ruim.
+
+Ser07RTTD_gamma
+Parâmetros MLE: μ = 0.0296295405982906, σ = 0.053672101753392855
+Coeficiente de Determinação (R²) do QQ plot: 0.4984
+Ajuste ruim.
+
+Cl11RTTU_gamma
+Parâmetros MLE: μ = 0.015223312883435584, σ = 0.009127893185975523
+Coeficiente de Determinação (R²) do QQ plot: 0.9713
+Bom ajuste.
+
+Ser07RTTU_gamma
+Parâmetros MLE: μ = 0.007644207154297918, σ = 0.005119010226154535
+Coeficiente de Determinação (R²) do QQ plot: 0.9766
+Bom ajuste.
