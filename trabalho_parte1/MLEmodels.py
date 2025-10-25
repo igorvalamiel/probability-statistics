@@ -166,53 +166,62 @@ class Normal():
     
     # Creating the QQplot Graph
     def QQplot(self, quantiA, quantiB, title, graphSize=(12,6)):
-        #getting size
+
         plt.figure(figsize=graphSize)
 
-        #getting basic data
-        TeoricQuant = stats.norm.ppf(np.linspace(quantiA, quantiB, len(self.normalData)), self.mu_mle, self.sigma_mle)
-        AmostrQuant = np.sort(self.normalData)
+        # Dados empíricos
+        data = np.sort(self.normalData)
+        n = len(data)
 
-        #creating the graph and the linear
+        # Probabilidades empíricas
+        p = (np.arange(1, n + 1) - 0.5) / n
+
+        # Quantis teóricos da Normal ajustada
+        TeoricQuant = stats.norm.ppf(p, self.mu_mle, self.sigma_mle)
+
+        # Seleciona intervalo de quantis (por exemplo, 0.95–0.99)
+        mask = (p >= quantiA) & (p <= quantiB)
+        TeoricQuant = TeoricQuant[mask]
+        AmostrQuant = data[mask]
+
+        # QQ-plot
         plt.scatter(TeoricQuant, AmostrQuant, alpha=0.7, color='#00B30E', label="Dados Reais x Ajuste Normal")
-        plt.plot([TeoricQuant.min(), TeoricQuant.max()], [TeoricQuant.min(), TeoricQuant.max()], "#E88300", linewidth=2, label='Linha de Referência (y=x)')
-
-        # plotting the graph
+        plt.plot([TeoricQuant.min(), TeoricQuant.max()],
+                [TeoricQuant.min(), TeoricQuant.max()],
+                "#E88300", linewidth=2, label='Linha de Referência (y=x)')
         plt.xlabel('Quantis Teóricos - Normal Ajustada')
         plt.ylabel('Quantis Amostrais - Dados Reais')
         plt.title(title)
         plt.legend()
         plt.grid(alpha=0.3)
-        plt.yscale('log')
-        plt.xscale('log')
-        #plt.axis('equal')
         plt.show()
 
-        #Calculating the Pearson Correaltion to verify if the model is great
+        # Correlação de Pearson (para avaliar ajuste)
         correlation, _ = stats.pearsonr(TeoricQuant, AmostrQuant)
-        pears = correlation**2
+        r2 = correlation**2
 
-        print(f"Coeficiente de Determinação (R²) do QQ plot: {pears}")
-        if pears > 0.95:
+        print(f"Coeficiente de Determinação (R²) do QQ plot: {r2:.4f}")
+        if r2 > 0.95:
             print("Bom ajuste.")
-        elif pears > 0.90:
+        elif r2 > 0.90:
             print("Ajuste razoável.")
         else:
             print("Ajuste ruim.")
 
+
 NorCli11RTTD = Normal(cli11rttd)
-NorCli11RTTD.MLE_Normal("RTT Download", "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
+#NorCli11RTTD.MLE_Normal("RTT Download", "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
 NorCli11RTTD.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
 
-NorSer07RTTD = Normal(ser07rttd)
-NorSer07RTTD.MLE_Normal("RTT Download", "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
-NorSer07RTTD.QQplot(0.95, 0.99, "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
+#NorSer07RTTD = Normal(ser07rttd)
+#NorSer07RTTD.MLE_Normal("RTT Download", "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
+#NorSer07RTTD.QQplot(0.95, 0.99, "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
 
-NorCli11RTTU = Normal(cli11rttu)
-NorCli11RTTU.MLE_Normal("RTT Upload", "Cliente 11 - RTT Upload - Distribuição Normal", (10,7))
-NorCli11RTTU.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
+#NorCli11RTTU = Normal(cli11rttu)
+#NorCli11RTTU.MLE_Normal("RTT Upload", "Cliente 11 - RTT Upload - Distribuição Normal", (10,7))
+#NorCli11RTTU.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
 
-NorSer07RTTU = Normal(ser07rttu)
-NorSer07RTTU.MLE_Normal("RTT Upload", "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
-NorSer07RTTU.QQplot(0.95, 0.99, "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
+#NorSer07RTTU = Normal(ser07rttu)
+#NorSer07RTTU.MLE_Normal("RTT Upload", "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
+#NorSer07RTTU.QQplot(0.95, 0.99, "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
 
