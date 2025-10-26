@@ -40,74 +40,42 @@ ser07rttu = clean(ser07rttu)
 ser07pl = clean(ser07pl)
 
 # =========================================================================================================================================
-# Calculing Gamma Model
+# Calculing Gamma Bayesian Model
 
-def analise_exploratoria(d):
+class GammaGamma():
+    def __init__(self, data, k, initialA, initialB):
+        self.gammaData = np.array(data)
+        self.dataSize = len(data)
+        self.k = k
+        trainData, testData = self.repart_data(data)
 
-    dados = np.array(d)
-    
-    # Estimativas momentâneas para Gamma
-    media = dados.mean()
-    variancia = dados.var()
-    alpha_est = (media ** 2) / variancia
-    beta_est = media / variancia
-    
-    fig, ax = plt.subplots(1, 1, figsize=(12, 8))
-    
-    # Parâmetros da Gamma
-    scale_est = 1/beta_est  # Parâmetro de escala
-    
-    # 1. Histograma dos dados
-    n, bins, patches = ax.hist(dados, bins=30, density=True, alpha=0.7, 
-                              color='lightblue', edgecolor='black', linewidth=0.5,
-                              label='Dados observados')
-    
-    # 2. Função densidade de probabilidade (PDF) da Gamma
-    x = np.linspace(0, dados.max() * 1.2, 1000)
-    pdf = stats.gamma(a=alpha_est, scale=scale_est).pdf(x)
-    
-    ax.plot(x, pdf, 'r-', linewidth=3, label=f'Gamma(α={alpha_est:.3f}, β={beta_est:.3f})')
-    ax.fill_between(x, pdf, alpha=0.2, color='red')
-    
-    # 3. Marcar estatísticas importantes
-    media_gamma = alpha_est / beta_est
-    moda_gamma = (alpha_est - 1) / beta_est if alpha_est >= 1 else 0
-    media_dados = dados.mean()
+        self.aP, self.bP = self.posteriori(trainData, initialA, initialB)
+        self.ExpectPost = self.aP / self.bP
+        self.VarPost = self.aP / (self.bP ** 2)
 
+        print(f"Posterior Alpha = {self.aP}")
+        print(f"Posterior Beta = {self.bP}")
+        print(f"Posterior Expected Value = {self.ExpectPost}")
+        print(f"Posterior Variance = {self.VarPost}")
+
+    # function to repart data
+    def repart_data(self, d, division=0.7):
+        n = int(self.dataSize * division)
+        trainD = d[:n]
+        testD = d[n:]
+
+        return (trainD, testD)
+
+    # funciton to get posterior
+    def posteriori(self, data,a, b):
+        n = len(data)
+        sum = np.sum(data)
+        aP = a + (n*self.k)
+        bP = b + sum
+
+        return aP, bP
     
-    ax.set_xlabel('Valor')
-    ax.set_ylabel('Densidade')
-    #ax.set_yscale('log')
-    ax.set_title('Ajuste da Distribuição Gamma aos Dados\n' +
-                f'Gamma(α={alpha_est:.3f}, β={beta_est:.3f}, θ={scale_est:.3f})')
-    ax.legend()
-    ax.grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    plt.show()
-    
-    # Estatísticas da distribuição
-    print("\n" + "="*60)
-    print("ESTATÍSTICAS DA DISTRIBUIÇÃO GAMMA ESTIMADA")
-    print("="*60)
-    print(f"Parâmetro de forma (α): {alpha_est}")
-    print(f"Parâmetro de taxa (β): {beta_est}")
-    print(f"Parâmetro de escala (θ = 1/β): {scale_est}")
-    print(f"Média teórica (α/β): {media_gamma}")
-    print(f"Média dos dados: {media_dados}")
-    print(f"Variância teórica (α/β²): {alpha_est/(beta_est**2)}")
-    print(f"Variância dos dados: {dados.var()}")
-    print(f"Desvio padrão teórico: {np.sqrt(alpha_est/(beta_est**2))}")
-    if alpha_est >= 1:
-        print(f"Moda teórica ((α-1)/β): {moda_gamma}")
-    else:
-        print("Moda: 0 (α < 1)")
-    print(f"Assimetria teórica: {2/np.sqrt(alpha_est)}")
-    print(f"Assimetria dos dados: {stats.skew(dados)}")
+    #funciton to 
 
 
-# Gerar visualização da função Gamma
-#analise_exploratoria(cli11dt)
-#analise_exploratoria(ser07dt)
-#analise_exploratoria(cli11ut)
-analise_exploratoria(ser07ut)
+GGCLi11DT = GammaGamma(cli11dt, 2.068843123877114, 1, 1)
