@@ -108,8 +108,8 @@ class GammaGamma:
         print(f"A discrepância relativa entre as variâncias é {discV}")
 
 
-GGCLi11DT = GammaGamma(cli11dt, 2.068843123877114, 1, 1)
-GGSer07DT = GammaGamma(ser07dt, 1.7674622620315197, 1, 1)
-GGCLi11UT = GammaGamma(cli11ut, 1.6047917342609985, 1, 1)
-GGSer07UT = GammaGamma(ser07ut, 1.349178536619483, 1, 1)
+GGCLi11DT = GammaGamma(cli11dt, 2.068843123877114, 0.001, 0.001)
+GGSer07DT = GammaGamma(ser07dt, 1.7674622620315197, 0.001, 0.001)
+GGCLi11UT = GammaGamma(cli11ut, 1.6047917342609985, 0.001, 0.001)
+GGSer07UT = GammaGamma(ser07ut, 1.349178536619483, 0.001, 0.001)
 
