@@ -53,3 +53,15 @@ Ser07RTTU_normal
 Parâmetros MLE: μ = 0.007644207154297918, σ = 0.005119010226154535
 Coeficiente de Determinação (R²) do QQ plot: 0.9766477549824272
 Bom ajuste.
+
+Cli11PL_beta
+Alpha estimado: 0.7273012894538273
+Beta estimado: 45.44369356493801
+Coeficiente de Determinação (R²) do QQ plot: 0.7656410447371649
+Ajuste ruim.
+
+Ser07PL_beta
+Alpha estimado: 0.30665369384541197
+Beta estimado: 15.318985168967787  
+Coeficiente de Determinação (R²) do QQ plot: 0.7530184505174652
+Ajuste ruim.
