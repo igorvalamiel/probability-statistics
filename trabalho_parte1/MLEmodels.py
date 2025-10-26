@@ -177,9 +177,7 @@ class Normal():
 
         # QQ-plot
         plt.scatter(TeoricQuant, AmostrQuant, alpha=0.7, color='#00B30E', label="Dados Reais x Ajuste Normal")
-        plt.plot([TeoricQuant.min(), TeoricQuant.max()],
-                [TeoricQuant.min(), TeoricQuant.max()],
-                "#E88300", linewidth=2, label='Linha de Referência (y=x)')
+        plt.plot([TeoricQuant.min(), TeoricQuant.max()], [TeoricQuant.min(), TeoricQuant.max()], "#E88300", linewidth=2, label='Linha de Referência (y=x)')
         plt.xlabel('Quantis Teóricos - Normal Ajustada')
         plt.ylabel('Quantis Amostrais - Dados Reais')
         plt.title(title)
@@ -199,19 +197,58 @@ class Normal():
         else:
             print("Ajuste ruim.")
 
-NorCli11RTTD = Normal(cli11rttd)
+#NorCli11RTTD = Normal(cli11rttd)
 #NorCli11RTTD.MLE_Normal("RTT Download", "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
-NorCli11RTTD.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
+#NorCli11RTTD.QQplot(0.95, 0.99, "Cliente 11 - RTT Download - Distribuição Normal", (10,7))
 
-NorSer07RTTD = Normal(ser07rttd)
+#NorSer07RTTD = Normal(ser07rttd)
 #NorSer07RTTD.MLE_Normal("RTT Download", "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
-NorSer07RTTD.QQplot(0.95, 0.99, "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
+#NorSer07RTTD.QQplot(0.95, 0.99, "Servidor 07 - RTT Download - Distribuição Normal", (10,7))
 
-NorCli11RTTU = Normal(cli11rttu)
+#NorCli11RTTU = Normal(cli11rttu)
 #NorCli11RTTU.MLE_Normal("RTT Upload", "Cliente 11 - RTT Upload - Distribuição Normal", (10,7))
-NorCli11RTTU.QQplot(0.95, 0.99, "Cliente 11 - RTT Upload - Distribuição Normal", (10,7))
+#NorCli11RTTU.QQplot(0.95, 0.99, "Cliente 11 - RTT Upload - Distribuição Normal", (10,7))
 
-NorSer07RTTU = Normal(ser07rttu)
+#NorSer07RTTU = Normal(ser07rttu)
 #NorSer07RTTU.MLE_Normal("RTT Upload", "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
-NorSer07RTTU.QQplot(0.95, 0.99, "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
+#NorSer07RTTU.QQplot(0.95, 0.99, "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
 
+# =========================================================================================================================================
+# Calculing Binomial MLE
+
+class Binomial():
+    #starting and setting attributes
+    def __init__(self, data, nt=1000):
+        self.binomialData = np.array(data)
+        self.n = nt
+        self.p_mle = np.mean(self.binomialData) / self.n
+
+    def MLE_Binomial(self, xname, title, graphSize=(12,6)):
+        #getting sizes for the graph
+        x_grid = np.arange(0, self.n + 1)
+
+        #calculing the normal PMF
+        pmf_bin = stats.binom.pmf(x_grid, self.n, self.p_mle)
+
+        #graph size
+        plt.figure(figsize=graphSize)
+
+        #creating graph
+        plt.hist(self.binomialData, bins=40, density=True, alpha=0.7, color='#00B30E', label=f'Dados [{xname}]', edgecolor='black', zorder=1, align='left')
+
+        #plotting Binomial curve
+        plt.plot(x_grid, pmf_bin, '#E88300', linewidth=2, markersize=6, label=f'Binomial MLE (n={self.n}, p={self.p_mle})', zorder=2)
+
+        #finishing the graph
+        # Configurações do gráfico
+        plt.xlabel(xname, fontsize=12)
+        plt.title(title, fontsize=14)
+        plt.legend(fontsize=11)
+        plt.grid(alpha=0.3, zorder=0)
+        plt.xticks(x_grid)
+        plt.show()
+
+        print(f"Parâmetro MLE: p = {self.p_mle}")
+
+BinCli11PL = Binomial(cli11pl, 10)
+BinCli11PL.MLE_Binomial("Packet Loss", "Cliente 11 - Packet Loss - Distribuição Binomial", (10,7))
