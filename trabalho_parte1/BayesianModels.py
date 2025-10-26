@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
+from scipy.special import beta as beta_func
 import json
 
 # colecting data
@@ -53,10 +54,13 @@ class GammaGamma():
         self.ExpectPost = self.aP / self.bP
         self.VarPost = self.aP / (self.bP ** 2)
 
+        print("========== DADOS DA POSTERIOR ==========")
         print(f"Posterior Alpha = {self.aP}")
         print(f"Posterior Beta = {self.bP}")
         print(f"Posterior Expected Value = {self.ExpectPost}")
-        print(f"Posterior Variance = {self.VarPost}")
+        print(f"Posterior Variance = {self.VarPost}\n")
+
+        print(self.BetaPrime(data))
 
     # function to repart data
     def repart_data(self, d, division=0.7):
@@ -67,7 +71,7 @@ class GammaGamma():
         return (trainD, testD)
 
     # funciton to get posterior
-    def posteriori(self, data,a, b):
+    def posteriori(self, data, a, b):
         n = len(data)
         sum = np.sum(data)
         aP = a + (n*self.k)
@@ -75,7 +79,30 @@ class GammaGamma():
 
         return aP, bP
     
-    #funciton to 
+    #funciton to get predictive posterior (Beta Prime Distribution)
+    def BetaPrime(self, data):
+        #getting scale
+        scale = 1/ self.bP
+
+        # getting new Y
+        betaPrimSamp = stats.betaprime.rvs(self.aP, self.bP, size=1000)
+        predSamp = betaPrimSamp * scale
+        Ynew_min = max(0.01, np.min(data) * 0.5)
+        Ynew_max = np.max([np.max(data) * 1.5, np.max(predSamp) * 1.1])
+        Ynew = np.linspace(Ynew_min, Ynew_max, 1000)
+        
+        return self.BetaPrimePDF(Ynew, scale)
+    
+    #defining PDF Beta-Prime function
+    def BetaPrimePDF(self, y, s):
+        if s == 0:
+            return np.zeros_like(y)
+
+        num = (y / s)**(self.aP - 1) * (1 + y / s)**(-self.aP - self.bP)
+        pdf = num / (s * beta_func(self.aP, self.bP))
+        return np.where(y > 0, pdf, 0)
+
+
 
 
 GGCLi11DT = GammaGamma(cli11dt, 2.068843123877114, 1, 1)
