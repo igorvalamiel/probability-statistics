@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
-from scipy.special import beta as beta_func
+from random import shuffle
 import json
 
 # colecting data
@@ -43,7 +43,7 @@ ser07pl = clean(ser07pl)
 # =========================================================================================================================================
 # Calculing Gamma Bayesian Model
 
-class GammaGamma():
+class GammaGamma:
     def __init__(self, data, k, initialA, initialB):
         self.gammaData = np.array(data)
         self.dataSize = len(data)
@@ -54,55 +54,62 @@ class GammaGamma():
         self.ExpectPost = self.aP / self.bP
         self.VarPost = self.aP / (self.bP ** 2)
 
-        print("========== DADOS DA POSTERIOR ==========")
+        print("======= POSTERIOR DATA =======")
         print(f"Posterior Alpha = {self.aP}")
         print(f"Posterior Beta = {self.bP}")
         print(f"Posterior Expected Value = {self.ExpectPost}")
-        print(f"Posterior Variance = {self.VarPost}\n")
+        print(f"Posterior Variance = {self.VarPost}")
+        print("======= PREDICTIVE POST DATA =======")
+        ExpectPred, VarPred = self.BetaPrime()
+        print(f"Média Preditiva = {ExpectPred}")
+        print(f"Variância Preditiva = {VarPred}")
+        print("======= COMPARING DATA =======")
+        self.compareData(ExpectPred, VarPred, testData)
+        print('\n')
 
-        print(self.BetaPrime(data))
-
-    # function to repart data
-    def repart_data(self, d, division=0.7):
+    def repart_data(self, data, division=0.7):
+        d = data
+        shuffle(d)
         n = int(self.dataSize * division)
-        trainD = d[:n]
-        testD = d[n:]
+        return d[:n], d[n:]
 
-        return (trainD, testD)
-
-    # funciton to get posterior
     def posteriori(self, data, a, b):
         n = len(data)
-        sum = np.sum(data)
-        aP = a + (n*self.k)
-        bP = b + sum
-
+        sum_data = np.sum(data)
+        aP = a + n * self.k
+        bP = b + sum_data
         return aP, bP
     
-    #funciton to get predictive posterior (Beta Prime Distribution)
-    def BetaPrime(self, data):
-        #getting scale
-        scale = 1/ self.bP
-
-        # getting new Y
-        betaPrimSamp = stats.betaprime.rvs(self.aP, self.bP, size=1000)
-        predSamp = betaPrimSamp * scale
-        Ynew_min = max(0.01, np.min(data) * 0.5)
-        Ynew_max = np.max([np.max(data) * 1.5, np.max(predSamp) * 1.1])
-        Ynew = np.linspace(Ynew_min, Ynew_max, 1000)
+    def BetaPrime(self):
+        scale = 1 / self.bP
+        print(f"Escala Beta-Prime = {scale}")
         
-        return self.BetaPrimePDF(Ynew, scale)
+        if (self.aP > 1):
+            Epred = (self.k * self.bP) / (self.aP - 1)
+            if (self.aP > 2):
+                Vpred = (self.k * (self.k + self.aP - 1) * (self.bP ** 2)) / (((self.aP - 1)**2)*(self.aP - 2))
+            else: Vpred = "Não foi possível calcular a Variância, pois an < 2."
+        else: Epred = "Não foi possível calcular a Média nem a Variância, pois an < 1."
+
+        return Epred, Vpred
     
-    #defining PDF Beta-Prime function
-    def BetaPrimePDF(self, y, s):
-        if s == 0:
-            return np.zeros_like(y)
+    def compareData(self, ev, pv, testD):
+        e = np.mean(testD)
+        v = np.var(testD)
 
-        num = (y / s)**(self.aP - 1) * (1 + y / s)**(-self.aP - self.bP)
-        pdf = num / (s * beta_func(self.aP, self.bP))
-        return np.where(y > 0, pdf, 0)
+        print(f"Média Referência (dados-teste) = {e}")
+        print(f"Média Preditiva = {ev}")
+        discE = abs(ev - e) / e
+        print(f"A discrepância relativa entre as médias é {discE}")
 
-
+        print(f"Variância Referência (dados-test) = {v}")
+        print(f"Variância Preditiva = {pv}")
+        discV = abs(pv - v) / v
+        print(f"A discrepância relativa entre as variâncias é {discV}")
 
 
 GGCLi11DT = GammaGamma(cli11dt, 2.068843123877114, 1, 1)
+GGSer07DT = GammaGamma(ser07dt, 1.7674622620315197, 1, 1)
+GGCLi11UT = GammaGamma(cli11ut, 1.6047917342609985, 1, 1)
+GGSer07UT = GammaGamma(ser07ut, 1.349178536619483, 1, 1)
+
