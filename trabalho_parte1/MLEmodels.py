@@ -212,7 +212,7 @@ class Normal():
 #NorSer07RTTU.QQplot(0.95, 0.99, "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
 
 # =========================================================================================================================================
-# Calculing Binomial MLE
+# Calculing Beta MLE
 
 class Beta():
     def __init__(self, data):
@@ -230,7 +230,7 @@ class Beta():
         plt.figure(figsize=graphSize)
 
         # plottong histogram
-        plt.hist(self.betaData, bins=8, density=True, alpha=0.7, label='Dados reais', 
+        plt.hist(self.betaData, bins=10, density=True, alpha=0.7, label='Dados reais', 
                 color='lightblue', edgecolor='black')
 
         # Gerar pontos para a curva beta - SEMPRE entre 0 e 1
@@ -276,7 +276,6 @@ class Beta():
             print("Ajuste razoável.")
         else:
             print("Ajuste ruim.")
-
 
 BinCli11PL = Beta(cli11pl)
 BinCli11PL.MLE_Beta("Packet Loss (a% -> a*0.01)", "Cliente 11 - Packet Loss - Distribuição Binomial", (10,7))
