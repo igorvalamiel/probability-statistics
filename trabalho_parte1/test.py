@@ -1,75 +1,56 @@
-import json
-import matplotlib.pyplot as plt
 import numpy as np
+from random import shuffle
 
-# colecting data
-with open("C:/Users/igorv/OneDrive/Área de Trabalho/Universidade/probest/probability-statistics/trabalho_parte1/var_cli11.json", 'r') as f:
-    varCli11 = json.load(f)
-with open("C:/Users/igorv/OneDrive/Área de Trabalho/Universidade/probest/probability-statistics/trabalho_parte1/var_ser07.json", 'r') as f:
-    varSer07 = json.load(f)
+class NormalNormal:
+    def __init__(self, data, mu0, tau0, sigma):
+        self.normalData = np.array(data)
+        self.dataSize = len(data)
+        self.var = sigma**2
+        trainData, testData = self.repart_data(data)
 
-cli11dt = varCli11['cli11dt']
-cli11rttd = varCli11['cli11rttd']
-cli11ut = varCli11['cli11ut']
-cli11rttu = varCli11['cli11rttu']
-cli11pl = varCli11['cli11pl']
+        self.mu, self.tau = self.posteriori(trainData, mu0, tau0, self.var)
 
-ser07dt = varSer07['ser07dt']
-ser07rttd = varSer07['ser07rttd']
-ser07ut = varSer07['ser07ut']
-ser07rttu = varSer07['ser07rttu']
-ser07pl = varSer07['ser07pl']
+        print("======= POSTERIOR DATA =======")
+        print(f"Posterior Expected Value = {self.mu}")
+        print(f"Posterior Variance = {self.tau}")
+        print("======= PREDICTIVE POST DATA =======")
+        print(f"Média Preditiva = {self.mu}")
+        print(f"Variância de erro = {self.var}")
+        print(f"Variância de Estimação = {self.tau}")
+        self.postVar = self.var + self.tau
+        print(f"Variância Preditiva = {self.postVar}")
+        print("======= COMPARING DATA =======")
+        self.compareData(self.mu, self.postVar, testData)
+        print('\n')
 
-#===============================================================================================================================================================
-# creating the histogram
+    #function to repart the data
+    def repart_data(self, data, division=0.7):
+        d = data
+        shuffle(d)
+        n = int(self.dataSize * division)
+        return d[:n], d[n:]
 
-# getting the max and the min in the x-line
-def get_borders(table1, table2):
-    a1, b1 = max(table1), max(table2)
-    a2, b2 = min(table1), min(table2)
-    return [min(a2,b2), max(a1, b1)]
+    #function to calculate the posteriori
+    def posteriori(self, data, mu0, tau0, var):
+        n = len(data)
+        mean_data = np.mean(data)
+        tau_2 = 1 / ((1 / (tau0**2)) + (n / var)) #this tau is squared
+        mu = tau_2 * ((mu0 / (tau0**2)) + (n*mean_data / var))
+        return mu, tau_2
 
-# function to create the histogram graph
-def histogram_double(data1, data2, binNum, title, xline, yline, graphSize=(12,6)):
-    # setting the separation
-    border = get_borders(data1, data2)
-    b = np.linspace(border[0], border[1], binNum)
+    #function to compare data
+    def compareData(self, ev, pv, testD):
+        e = np.mean(testD)
+        v = np.var(testD)
 
-    # creating the plot
-    plt.figure(figsize=graphSize)
+        print(f"Média Referência (dados-teste) = {e}")
+        print(f"Média Preditiva = {ev}")
+        discE = abs(ev - e) / e
+        print(f"A discrepância relativa entre as médias é {discE}")
 
-    # pltting the first histogram
-    plt.hist(
-        data1,              # getting the data
-        bins=b,             # setting the separation
-        alpha=0.6,          # setting the "transparency" to see the other graph
-        label="Cliente 11",  # naming the data
-        color='green',      # coloring the data
-        edgecolor='black'   # coloring the border
-    )
+        print(f"Variância Referência (dados-test) = {v}")
+        print(f"Variância Preditiva = {pv}")
+        discV = abs(pv - v) / v
+        print(f"A discrepância relativa entre as variâncias é {discV}")
 
-    # pltting the first histogram
-    plt.hist(
-        data2,              # getting the data
-        bins=b,             # setting the separation
-        alpha=0.6,          # setting the "transparency" to see the other graph
-        label="Servidor 07",  # naming the data
-        color='orange',      # coloring the data
-        edgecolor='black'   # coloring the border
-    )
-    
-    # adjusting the graph (adding titles and captions)
-    plt.title(title)
-    plt.xlabel(xline)
-    plt.ylabel(yline)
-    plt.legend(loc='upper right') # captions position
-    plt.grid(axis='y', alpha=0.3)
 
-    # showing the histogram
-    plt.show()
-
-#histogram_double(cli11dt, ser07dt, 40, "Download Throughput (bps)", "bps", "Frequancy", (16,8))
-#histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequancy", (16,8))
-#histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequancy", (16,8))
-#histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequancy", (16,8))
-#histogram_double(cli11ut, ser07ut, 40, "Upload Throughput (bps)", "bps", "Frequancy", (16,8))

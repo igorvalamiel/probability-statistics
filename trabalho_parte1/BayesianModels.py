@@ -1,6 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import scipy.stats as stats
 from random import shuffle
 import json
 
@@ -41,16 +39,16 @@ ser07rttu = clean(ser07rttu)
 ser07pl = clean(ser07pl)
 
 # =========================================================================================================================================
-# Calculing Gamma Bayesian Model
+# Calculing Gamma-Gamma Bayesian Model
 
 class GammaGamma:
-    def __init__(self, data, k, initialA, initialB):
+    def __init__(self, data, k, alpha0, beta0):
         self.gammaData = np.array(data)
         self.dataSize = len(data)
         self.k = k
         trainData, testData = self.repart_data(data)
 
-        self.aP, self.bP = self.posteriori(trainData, initialA, initialB)
+        self.aP, self.bP = self.posteriori(trainData, alpha0, beta0)
         self.ExpectPost = self.aP / self.bP
         self.VarPost = self.aP / (self.bP ** 2)
 
@@ -67,12 +65,14 @@ class GammaGamma:
         self.compareData(ExpectPred, VarPred, testData)
         print('\n')
 
+    #function to repart the data
     def repart_data(self, data, division=0.7):
         d = data
         shuffle(d)
         n = int(self.dataSize * division)
         return d[:n], d[n:]
 
+    #function to calculate the posteriori
     def posteriori(self, data, a, b):
         n = len(data)
         sum_data = np.sum(data)
@@ -80,6 +80,7 @@ class GammaGamma:
         bP = b + sum_data
         return aP, bP
     
+    #function to calculare the Beta Prime Distribution (media e variancia)
     def BetaPrime(self):
         scale = 1 / self.bP
         print(f"Escala Beta-Prime = {scale}")
@@ -93,6 +94,7 @@ class GammaGamma:
 
         return Epred, Vpred
     
+    #function to compare data
     def compareData(self, ev, pv, testD):
         e = np.mean(testD)
         v = np.var(testD)
@@ -107,9 +109,65 @@ class GammaGamma:
         discV = abs(pv - v) / v
         print(f"A discrepância relativa entre as variâncias é {discV}")
 
+#GGCLi11DT = GammaGamma(cli11dt, 2.068843123877114, 0.001, 0.001)
+#GGSer07DT = GammaGamma(ser07dt, 1.7674622620315197, 0.001, 0.001)
+#GGCLi11UT = GammaGamma(cli11ut, 1.6047917342609985, 0.001, 0.001)
+#GGSer07UT = GammaGamma(ser07ut, 1.349178536619483, 0.001, 0.001)
 
-GGCLi11DT = GammaGamma(cli11dt, 2.068843123877114, 0.001, 0.001)
-GGSer07DT = GammaGamma(ser07dt, 1.7674622620315197, 0.001, 0.001)
-GGCLi11UT = GammaGamma(cli11ut, 1.6047917342609985, 0.001, 0.001)
-GGSer07UT = GammaGamma(ser07ut, 1.349178536619483, 0.001, 0.001)
+# =========================================================================================================================================
+# Calculing Normal-Normal Bayesian Model
 
+class NormalNormal:
+    def __init__(self, data, mu0, tau0, sigma):
+        self.normalData = np.array(data)
+        self.dataSize = len(data)
+        self.var = sigma**2
+        trainData, testData = self.repart_data(data)
+
+        self.mu, self.tau = self.posteriori(trainData, mu0, tau0, self.var)
+
+        print("======= POSTERIOR DATA =======")
+        print(f"Posterior Expected Value = {self.mu}")
+        print(f"Posterior Variance = {self.tau}")
+        print("======= PREDICTIVE POST DATA =======")
+        print(f"Média Preditiva = {self.mu}")
+        print(f"Variância de erro = {self.var}")
+        print(f"Variância de Estimação = {self.tau}")
+        self.postVar = self.var + self.tau
+        print(f"Variância Preditiva = {self.postVar}")
+        print("======= COMPARING DATA =======")
+        self.compareData(self.mu, self.postVar, testData)
+        print('\n')
+
+    #function to repart the data
+    def repart_data(self, data, division=0.7):
+        d = data
+        shuffle(d)
+        n = int(self.dataSize * division)
+        return d[:n], d[n:]
+
+    #function to calculate the posteriori
+    def posteriori(self, data, mu0, tau0, var):
+        n = len(data)
+        mean_data = np.mean(data)
+        tau_2 = 1 / ((1 / (tau0**2)) + (n / var)) #this tau is squared
+        mu = tau_2 * ((mu0 / (tau0**2)) + (n*mean_data / var))
+        return mu, tau_2
+
+    #function to compare data
+    def compareData(self, ev, pv, testD):
+        e = np.mean(testD)
+        v = np.var(testD)
+
+        print(f"Média Referência (dados-teste) = {e}")
+        print(f"Média Preditiva = {ev}")
+        discE = abs(ev - e) / e
+        print(f"A discrepância relativa entre as médias é {discE}")
+
+        print(f"Variância Referência (dados-test) = {v}")
+        print(f"Variância Preditiva = {pv}")
+        discV = abs(pv - v) / v
+        print(f"A discrepância relativa entre as variâncias é {discV}")
+
+    
+NNcli11RTTD = NormalNormal(cli11rttd, 1, 100000, 0.006238702528947186)
