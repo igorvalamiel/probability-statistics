@@ -142,3 +142,70 @@ A discrepância relativa entre as médias é 0.005310537782194801
 Variância Referência (dados-test) = 9.402844217570782e+16
 Variância Preditiva = 1.500961664513512e+17
 A discrepância relativa entre as variâncias é 0.5962847302188787
+
+Cli11RTTD_nn
+======= POSTERIOR DATA =======
+Posterior Expected Value = 0.012526023391812868
+Posterior Variance = 1.1380529018915794e-07
+======= PREDICTIVE POST DATA =======
+Média Preditiva = 0.012526023391812868
+Variância de erro = 3.892140924469202e-05
+Variância de Estimação = 1.1380529018915794e-07
+Variância Preditiva = 3.9035214534881174e-05
+======= COMPARING DATA =======
+Média Referência (dados-teste) = 0.01371360544217687
+Média Preditiva = 0.012526023391812868
+A discrepância relativa entre as médias é 0.08659882008210147
+Variância Referência (dados-test) = 0.00011220063121847379
+Variância Preditiva = 3.9035214534881174e-05
+A discrepância relativa entre as variâncias é 0.6520945193358766
+
+Ser07RTTD_nn
+======= POSTERIOR DATA =======
+Posterior Expected Value = 0.029501946564885494
+Posterior Variance = 1.0995017200864718e-06
+======= PREDICTIVE POST DATA =======
+Média Preditiva = 0.029501946564885494
+Variância de erro = 0.0028806945066265563
+Variância de Estimação = 1.0995017200864718e-06
+Variância Preditiva = 0.002881794008346643
+======= COMPARING DATA =======
+Média Referência (dados-teste) = 0.029926957295373667
+Média Preditiva = 0.029501946564885494
+A discrepância relativa entre as médias é 0.01420160179644707
+Variância Referência (dados-test) = 0.0028620515419875
+Variância Preditiva = 0.002881794008346643
+A discrepância relativa entre as variâncias é 0.006898012166976218
+
+Cli11RTTU_nn
+======= POSTERIOR DATA =======
+Posterior Expected Value = 0.014657894736842106
+Posterior Variance = 2.4362115208941047e-07
+======= PREDICTIVE POST DATA =======
+Média Preditiva = 0.014657894736842106
+Variância de erro = 8.331843401457838e-05
+Variância de Estimação = 2.4362115208941047e-07
+Variância Preditiva = 8.35620551666678e-05
+======= COMPARING DATA =======
+Média Referência (dados-teste) = 0.016538775510204086
+Média Preditiva = 0.014657894736842106
+A discrepância relativa entre as médias é 0.11372551566477912
+Variância Referência (dados-test) = 0.00023871135360266553
+Variância Preditiva = 8.35620551666678e-05
+A discrepância relativa entre as variâncias é 0.6499451999013142
+
+Ser07RTTU_nn
+Posterior Expected Value = 0.015544444444444439
+Posterior Variance = 7.662065992828861e-08
+======= PREDICTIVE POST DATA =======
+Média Preditiva = 0.015544444444444439
+Variância de erro = 2.6204265695474707e-05
+Variância de Estimação = 7.662065992828861e-08
+Variância Preditiva = 2.6280886355402996e-05
+======= COMPARING DATA =======
+Média Referência (dados-teste) = 0.014476190476190478
+Média Preditiva = 0.015544444444444439
+A discrepância relativa entre as médias é 0.07379385964912231
+Variância Referência (dados-test) = 2.0268480725623588e-05
+Variância Preditiva = 2.6280886355402996e-05
+A discrepância relativa entre as variâncias é 0.2966381995360152

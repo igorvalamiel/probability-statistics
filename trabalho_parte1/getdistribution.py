@@ -60,4 +60,4 @@ def getDist(data):
     plt.tight_layout()
     plt.show()
 
-getDist(ser07dt)
+getDist(ser07rttu)

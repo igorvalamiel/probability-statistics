@@ -170,4 +170,7 @@ class NormalNormal:
         print(f"A discrepância relativa entre as variâncias é {discV}")
 
     
-NNcli11RTTD = NormalNormal(cli11rttd, 1, 100000, 0.006238702528947186)
+#NNcli11RTTD = NormalNormal(cli11rttd, 0.01, 1e10, 0.006238702528947186)
+#NNser07RTTD = NormalNormal(ser07rttd, 0.01, 1e10, 0.053672101753392855)
+#NNcli11RTTU = NormalNormal(cli11rttu, 0.01, 1e10, 0.009127893185975523)
+#NNser07RTTU = NormalNormal(cli11rttu, 0.01, 1e10, 0.005119010226154535)
