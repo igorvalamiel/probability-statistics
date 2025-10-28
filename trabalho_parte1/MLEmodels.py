@@ -2,8 +2,7 @@ import scipy.stats as stats
 import json
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.optimize import minimize
-from scipy.special import beta
+import scipy.optimize as optimize
 
 # colecting data
 with open("C:/Users/igorv/OneDrive/Área de Trabalho/Universidade/probest/probability-statistics/trabalho_parte1/var_cli11.json", 'r') as f:
@@ -212,6 +211,39 @@ class Normal():
 #NorSer07RTTU.QQplot(0.95, 0.99, "Servidor 07 - RTT Upload - Distribuição Normal", (10,7))
 
 # =========================================================================================================================================
+# Calculing Binomial MLE
+class Binomial():
+    def __init__(self, data):
+        binData = np.array(data)
+
+        # Discretizar seus dados
+        n_trials = 1000
+        dados_discretos = self.discretizar_dados(binData, n_trials)
+        # Estimar p
+        resultado = optimize.minimize_scalar(
+            self.neg_log_likelihood_binomial,
+            args=(dados_discretos, n_trials),
+            bounds=(0.001, 0.999),
+            method='bounded')
+
+        p_estimado = resultado.x
+        print(f"Probabilidade estimada (Binomial): {p_estimado:.4f}")
+        print(f"Taxa equivalente: {p_estimado * 100:.2f}%")
+
+    # Discretizar os dados para usar modelo Binomial
+    def discretizar_dados(self, dados, n_trials=100):
+        # Multiplica por n_trials e arredonda para inteiro
+        dados_discretos = np.round(np.array(dados) * n_trials / 100).astype(int)
+        return np.clip(dados_discretos, 0, n_trials)
+
+    # Função de verossimilhança Binomial
+    def neg_log_likelihood_binomial(self, p, data, n_trials):
+        return -np.sum(stats.binom.logpmf(data, n_trials, p))
+    
+BinCli11PL = Binomial(cli11pl)
+BinSer07PL = Binomial(ser07pl)
+
+# =========================================================================================================================================
 # Calculing Beta MLE
 
 class Beta():
@@ -277,10 +309,10 @@ class Beta():
         else:
             print("Ajuste ruim.")
 
-BinCli11PL = Beta(cli11pl)
-BinCli11PL.MLE_Beta("Packet Loss (a% -> a*0.01)", "Cliente 11 - Packet Loss - Distribuição Binomial", (10,7))
-BinCli11PL.QQplot(0.95, 0.99, "Cliente 11 - Packet Loss - Distribuição Beta", (10,7))
+#BetaCli11PL = Beta(cli11pl)
+#BetaCli11PL.MLE_Beta("Packet Loss (a% -> a*0.01)", "Cliente 11 - Packet Loss - Distribuição Binomial", (10,7))
+#BetaCli11PL.QQplot(0.95, 0.99, "Cliente 11 - Packet Loss - Distribuição Beta", (10,7))
 
-BinSer07PL = Beta(ser07pl)
-BinSer07PL.MLE_Beta("Packet Loss (a% -> a*0.01)", "Servidor 07 - Packet Loss - Distribuição Binomial", (10,7))
-BinSer07PL.QQplot(0.95, 0.99, "Servidor 07 - Packet Loss - Distribuição Beta", (10,7))
+#BetaSer07PL = Beta(ser07pl)
+#BetaSer07PL.MLE_Beta("Packet Loss (a% -> a*0.01)", "Servidor 07 - Packet Loss - Distribuição Binomial", (10,7))
+#BetaSer07PL.QQplot(0.95, 0.99, "Servidor 07 - Packet Loss - Distribuição Beta", (10,7))
