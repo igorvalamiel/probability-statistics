@@ -212,3 +212,45 @@ A discrepância relativa entre as médias é 0.07379385964912231
 Variância Referência (dados-test) = 2.0268480725623588e-05
 Variância Preditiva = 2.6280886355402996e-05
 A discrepância relativa entre as variâncias é 0.2966381995360152
+
+Cli11PL_bb
+======= POSTERIOR DATA =======
+Conversão para dados binomiais:
+Pacotes perdidos (sucessos): 4022
+Total de pacotes (tentativas): 342000
+Taxa de perda observada: 0.011760233918128655
+======= PREDICTIVE POST DATA =======
+Novos valores para as priors:
+Alpha = 4023
+Beta = 337979
+======= COMPARING DATA =======
+Média Referência (dados-teste) = 1.2482823129251701
+Media Preditiva = 1.175187134502924
+A discrepância relativa entre as variáveis é 0.0585566082811493    
+Variância Referência (dados-test) = 1.2482823129251701
+Variância Preditiva = 1.175187134502924
+A discrepância relativa entre as variáveis é 0.026235425426840736  
+Proporção Referência (dados-teste) = 0.008491716414456939
+Proporção Preditiva = 0.003436219691529017
+A discrepância relativa entre as variáveis é 0.5953445070682133
+
+Ser07PL_bb
+======= POSTERIOR DATA =======
+Conversão para dados binomiais:
+Pacotes perdidos (sucessos): 43784
+Total de pacotes (tentativas): 2620000
+Taxa de perda observada: 0.01671145038167939
+======= PREDICTIVE POST DATA =======
+Novos valores para as priors:
+Alpha = 43785
+Beta = 2576217
+======= COMPARING DATA =======
+Média Referência (dados-teste) = 1.6498718861209964
+Media Preditiva = 1.6739880152671758
+A discrepância relativa entre as variáveis é 0.014616970777578746
+Variância Referência (dados-test) = 1.6498718861209964
+Variância Preditiva = 1.6739880152671758
+A discrepância relativa entre as variáveis é 0.07922162787632109
+Proporção Referência (dados-teste) = 0.0014678575499297122
+Proporção Preditiva = 0.0006389267233844183
+A discrepância relativa entre as variáveis é 0.5647215743687028

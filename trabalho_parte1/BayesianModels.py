@@ -194,7 +194,7 @@ class BetaBinomial:
         print(f"Pacotes perdidos (sucessos): {xt}")
         print(f"Total de pacotes (tentativas): {nt}")
         loss_percent = xt/nt
-        print(f"Taxa de perda observada: {loss_percent} ({loss_percent*100}%)")
+        print(f"Taxa de perda observada: {loss_percent}")
 
         self.alpha, self.beta = self.posterior(xt, nt)
 
@@ -210,7 +210,7 @@ class BetaBinomial:
         print(f"Media Preditiva = {medtrain}")
         self.compareData(medtrain, medtest)
         print(f"Variância Referência (dados-test) = {medtest}")
-        print(f"ariância Preditiva = {medtrain}")
+        print(f"Variância Preditiva = {medtrain}")
         self.compareData(vartrain, vartest)
         print(f"Proporção Referência (dados-teste) = {proptest}")
         print(f"Proporção Preditiva = {proptrain}")
@@ -248,9 +248,13 @@ class BetaBinomial:
         b = self.beta
         n = len(d)
 
-        med = (n*a)/(a+b)
-        var = (n*a*b*(n+a+b))/(((a+b)**2)*(a+b+1))
-        prop = a/(a+b)
+        #med = (n*a)/(a+b)
+        #var = (n*a*b*(n+a+b))/(((a+b)**2)*(a+b+1))
+        #prop = a/(a+b)
+
+        med = np.mean(d)
+        var = np.var(d)
+        prop = med/n
 
         return med, var, prop
 
