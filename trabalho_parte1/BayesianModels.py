@@ -174,3 +174,51 @@ class NormalNormal:
 #NNser07RTTD = NormalNormal(ser07rttd, 0.01, 1e10, 0.053672101753392855)
 #NNcli11RTTU = NormalNormal(cli11rttu, 0.01, 1e10, 0.009127893185975523)
 #NNser07RTTU = NormalNormal(cli11rttu, 0.01, 1e10, 0.005119010226154535)
+
+# =========================================================================================================================================
+# Calculing Beta-Binomial Bayesian Model
+
+class BetaBinomial:
+    def __init__(self, data, a0=1, b0=1):
+        self.betabinData = np.array(data)
+        n = 1000
+        self.alpha_0 = a0
+        self.beta_0 = b0
+
+        xt, nt = self.percentToBin(self.betabinData, n)
+
+        print(f"Conversão para dados binomiais:")
+        print(f"Pacotes perdidos (sucessos): {xt}")
+        print(f"Total de pacotes (tentativas): {nt}")
+        loss_percent = xt/nt
+        print(f"Taxa de perda observada: {loss_percent} ({loss_percent*100}%)\n")
+
+        self.alpha, self.beta = self.posterior(xt, nt)
+
+        print("Novos valores para as priors:")
+        print(f"Alpha = {self.alpha}")
+        print(f"Beta = {self.beta}")
+
+        
+
+    # ajusting data to binomial
+    def percentToBin(self, d, n):
+        sucess = 0
+        trials = 0
+
+        for p in d:
+            l = p/100
+            losses = int(round(l * n))
+            sucess += losses
+            trials += n
+        
+        return sucess, trials
+    
+    def posterior(self, x, n):
+        a = self.alpha_0 + x
+        b = self.beta_0 + (n-x)
+        return a, b
+
+BBcli11PL = BetaBinomial(cli11pl)
+print("\n====================================================\n")
+BBser07PL = BetaBinomial(ser07pl)
