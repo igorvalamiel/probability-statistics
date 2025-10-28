@@ -212,35 +212,102 @@ class Normal():
 
 # =========================================================================================================================================
 # Calculing Binomial MLE
+
 class Binomial():
     def __init__(self, data):
         binData = np.array(data)
+        bin_n = 1000
+        dados_discretos = self.discretizar_dados(binData, bin_n)
+        
+        # command to estime p
+        resultado = optimize.minimize_scalar(self.neg_log_likelihood_binomial, args=(dados_discretos, bin_n), bounds=(0.001, 0.999), method='bounded')
 
-        # Discretizar seus dados
-        n_trials = 1000
-        dados_discretos = self.discretizar_dados(binData, n_trials)
-        # Estimar p
-        resultado = optimize.minimize_scalar(
-            self.neg_log_likelihood_binomial,
-            args=(dados_discretos, n_trials),
-            bounds=(0.001, 0.999),
-            method='bounded')
+        pMLE = resultado.x
+        self.pMLE = pMLE
+        self.bin_n = bin_n
+        self.dados_originais = binData
+        self.dados_discretos = dados_discretos
+        
+        print(f"Probabilidade estimada (Binomial): {pMLE}")
+        print(f"Taxa equivalente: {pMLE * 100}%")
 
-        p_estimado = resultado.x
-        print(f"Probabilidade estimada (Binomial): {p_estimado:.4f}")
-        print(f"Taxa equivalente: {p_estimado * 100:.2f}%")
+    # ajusting data to use Binomial
+    def discretizar_dados(self, dados, bin_n=1000):
+        dados_discretos = np.round(np.array(dados) * bin_n / 100).astype(int)
+        return np.clip(dados_discretos, 0, bin_n)
 
-    # Discretizar os dados para usar modelo Binomial
-    def discretizar_dados(self, dados, n_trials=100):
-        # Multiplica por n_trials e arredonda para inteiro
-        dados_discretos = np.round(np.array(dados) * n_trials / 100).astype(int)
-        return np.clip(dados_discretos, 0, n_trials)
+    # using log function
+    def neg_log_likelihood_binomial(self, p, data, bin_n):
+        return -np.sum(stats.binom.logpmf(data, bin_n, p))
 
-    # Função de verossimilhança Binomial
-    def neg_log_likelihood_binomial(self, p, data, n_trials):
-        return -np.sum(stats.binom.logpmf(data, n_trials, p))
+    #plotting histogram
+    def plot_histogram_binomial(self, graphsize=(12,6)):
+        plt.figure(figsize=graphsize)
+        plt.hist(self.dados_discretos, bins=20, density=True, alpha=0.7, 
+                color='skyblue', edgecolor='black', label='Dados observados')
+        
+        x_teorico = np.arange(0, self.bin_n + 1)
+        y_teorico = stats.binom.pmf(x_teorico, self.bin_n, self.pMLE)
+        
+        plt.plot(x_teorico, y_teorico, 'r-', linewidth=2, 
+                label=f'Binomial(n={self.bin_n}, p={self.pMLE:.3f})')
+        
+        plt.xlabel('Número de Sucessos')
+        plt.ylabel('Densidade de Probabilidade')
+        plt.title('Histograma: Dados vs Distribuição Binomial')
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        
+        plt.tight_layout()
+        plt.show()
+
+    #plotting QQplot
+    def plot_qq_binomial(self):
+        plt.figure(figsize=(8, 6))
+        
+        # Ordenar dados observados
+        dados_ordenados = np.sort(self.dados_discretos)
+        
+        # Calcular quantis teóricos
+        n = len(dados_ordenados)
+        probabilidades = (np.arange(1, n + 1) - 0.5) / n  # Probabilidades para QQ plot
+        quantis_teoricos = stats.binom.ppf(probabilidades, self.bin_n, self.pMLE)
+        
+        # Plot QQ
+        plt.scatter(quantis_teoricos, dados_ordenados, alpha=0.7, color='blue')
+        
+        # Linha de referência y = x
+        min_val = min(quantis_teoricos.min(), dados_ordenados.min())
+        max_val = max(quantis_teoricos.max(), dados_ordenados.max())
+        plt.plot([min_val, max_val], [min_val, max_val], 'r--', alpha=0.8, 
+                label='y = x (Referência)')
+        
+        plt.xlabel('Quantis Teóricos Binomial')
+        plt.ylabel('Quantis Amostrais')
+        plt.title(f'QQ Plot - Distribuição Binomial\n'
+                 f'n={self.bin_n}, p={self.pMLE:.4f}')
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        
+        # Adicionar estatísticas de qualidade do ajuste no gráfico
+        corr_coef = np.corrcoef(quantis_teoricos, dados_ordenados)[0, 1]
+        plt.text(0.95, 0.99, f'Coef. Correlação: {corr_coef:.4f}', 
+                transform=plt.gca().transAxes, bbox=dict(boxstyle="round", facecolor='wheat', alpha=0.8))
+        
+        plt.tight_layout()
+        plt.show()
+        
+        # Print estatísticas adicionais
+        print(f"\n--- Estatísticas do Ajuste Binomial ---")
+        print(f"Coeficiente de correlação no QQ plot: {corr_coef}")
+        print(f"Média observada: {np.mean(self.dados_discretos):.2f}")
+        print(f"Média teórica (n*p): {self.bin_n * self.pMLE:.2f}")
+        print(f"Variância observada: {np.var(self.dados_discretos):.2f}")
+        print(f"Variância teórica (n*p*(1-p)): {self.bin_n * self.pMLE * (1 - self.pMLE):.2f}")
     
 BinCli11PL = Binomial(cli11pl)
+BinCli11PL.plot_histogram_binomial((10,7))
+
 BinSer07PL = Binomial(ser07pl)
 
 # =========================================================================================================================================
