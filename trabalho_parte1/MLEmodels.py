@@ -229,7 +229,6 @@ class Binomial():
         self.dados_discretos = dados_discretos
         
         print(f"Probabilidade estimada (Binomial): {pMLE}")
-        print(f"Taxa equivalente: {pMLE * 100}%")
 
     # ajusting data to use Binomial
     def discretizar_dados(self, dados, bin_n=1000):
@@ -240,30 +239,37 @@ class Binomial():
     def neg_log_likelihood_binomial(self, p, data, bin_n):
         return -np.sum(stats.binom.logpmf(data, bin_n, p))
 
-    #plotting histogram
-    def plot_histogram_binomial(self, graphsize=(12,6)):
+    # plotting histogram with Packet Loss on X-axis
+    def plot_histogram_binomial(self, title, graphsize=(12,6)):
         plt.figure(figsize=graphsize)
-        plt.hist(self.dados_discretos, bins=20, density=True, alpha=0.7, 
-                color='skyblue', edgecolor='black', label='Dados observados')
         
+        # Convert discrete data back to packet loss rates (0-1)
+        packet_loss_observed = self.dados_discretos / self.bin_n
+        plt.hist(packet_loss_observed, bins=20, density=True, alpha=0.7, 
+                color='#00B30E', edgecolor='black', label='Dados observados')
+        
+        # Theoretical distribution in packet loss scale (0-1)
         x_teorico = np.arange(0, self.bin_n + 1)
         y_teorico = stats.binom.pmf(x_teorico, self.bin_n, self.pMLE)
         
-        plt.plot(x_teorico, y_teorico, 'r-', linewidth=2, 
+        # Convert x-axis to packet loss rate
+        x_packet_loss = x_teorico / self.bin_n
+        
+        plt.plot(x_packet_loss, y_teorico * self.bin_n, color = "#E88300", linewidth=2, 
                 label=f'Binomial(n={self.bin_n}, p={self.pMLE:.3f})')
         
-        plt.xlabel('Número de Sucessos')
-        plt.ylabel('Densidade de Probabilidade')
-        plt.title('Histograma: Dados vs Distribuição Binomial')
+        plt.xlabel('Packet Loss Rate', fontsize=12)
+        plt.ylabel('Densidade de Probabilidade', fontsize=12)
+        plt.title(title, fontsize=14)
         plt.legend()
         plt.grid(True, alpha=0.3)
-        
+        plt.xlim(0, 1)
         plt.tight_layout()
         plt.show()
 
     #plotting QQplot
-    def plot_qq_binomial(self):
-        plt.figure(figsize=(8, 6))
+    def plot_qq_binomial(self, title, graphSize=(12,6)):
+        plt.figure(figsize=graphSize)
         
         # Ordenar dados observados
         dados_ordenados = np.sort(self.dados_discretos)
@@ -274,18 +280,17 @@ class Binomial():
         quantis_teoricos = stats.binom.ppf(probabilidades, self.bin_n, self.pMLE)
         
         # Plot QQ
-        plt.scatter(quantis_teoricos, dados_ordenados, alpha=0.7, color='blue')
+        plt.scatter(quantis_teoricos, dados_ordenados, alpha=0.7, color='#00B30E')
         
         # Linha de referência y = x
         min_val = min(quantis_teoricos.min(), dados_ordenados.min())
         max_val = max(quantis_teoricos.max(), dados_ordenados.max())
-        plt.plot([min_val, max_val], [min_val, max_val], 'r--', alpha=0.8, 
+        plt.plot([min_val, max_val], [min_val, max_val], color="#E88300", alpha=0.8, 
                 label='y = x (Referência)')
         
-        plt.xlabel('Quantis Teóricos Binomial')
-        plt.ylabel('Quantis Amostrais')
-        plt.title(f'QQ Plot - Distribuição Binomial\n'
-                 f'n={self.bin_n}, p={self.pMLE:.4f}')
+        plt.xlabel('Quantis Teóricos Binomial', fontsize=12)
+        plt.ylabel('Quantis Amostrais', fontsize=12)
+        plt.title(title, fontsize=14)
         plt.legend()
         plt.grid(True, alpha=0.3)
         
@@ -298,17 +303,17 @@ class Binomial():
         plt.show()
         
         # Print estatísticas adicionais
-        print(f"\n--- Estatísticas do Ajuste Binomial ---")
         print(f"Coeficiente de correlação no QQ plot: {corr_coef}")
-        print(f"Média observada: {np.mean(self.dados_discretos):.2f}")
-        print(f"Média teórica (n*p): {self.bin_n * self.pMLE:.2f}")
-        print(f"Variância observada: {np.var(self.dados_discretos):.2f}")
-        print(f"Variância teórica (n*p*(1-p)): {self.bin_n * self.pMLE * (1 - self.pMLE):.2f}")
     
-BinCli11PL = Binomial(cli11pl)
-BinCli11PL.plot_histogram_binomial((10,7))
+#BinCli11PL = Binomial(cli11pl)
+#BinCli11PL.plot_histogram_binomial("Cliente 11 - Packet Loss - Distribuição Binomial", (10,7))
+#BinCli11PL.plot_qq_binomial("Cliente 11 - Packet Loss - Distribuição Binomial", (10,7))
+#print()
 
-BinSer07PL = Binomial(ser07pl)
+#BinSer07PL = Binomial(ser07pl)
+#BinSer07PL.plot_histogram_binomial("Servidor 07 - Packet Loss - Distribuição Binomial", (10,7))
+#BinSer07PL.plot_qq_binomial("vidor 07 - Packet Loss - Distribuição Binomial", (10,7))
+
 
 # =========================================================================================================================================
 # Calculing Beta MLE

@@ -56,16 +56,22 @@ Coeficiente de Determinação (R²) do QQ plot: 0.9766477549824272
 Bom ajuste.
 
 Cli11PL_beta
-Alpha estimado: 0.7273012894538273
-Beta estimado: 45.44369356493801
-Coeficiente de Determinação (R²) do QQ plot: 0.7656410447371649
-Ajuste ruim.
+Probabilidade estimada (Binomial): 0.011991722002820095
+Coeficiente de correlação no QQ plot: 0.8264722773299011
+
+    Alpha estimado: 0.7273012894538273
+    Beta estimado: 45.44369356493801
+    Coeficiente de Determinação (R²) do QQ plot: 0.7656410447371649
+    Ajuste ruim.
 
 Ser07PL_beta
-Alpha estimado: 0.30665369384541197
-Beta estimado: 15.318985168967787  
-Coeficiente de Determinação (R²) do QQ plot: 0.7530184505174652
-Ajuste ruim.
+Probabilidade estimada (Binomial): 0.016645878426521918
+Coeficiente de correlação no QQ plot: 0.8073455169831422
+
+    Alpha estimado: 0.30665369384541197
+    Beta estimado: 15.318985168967787  
+    Coeficiente de Determinação (R²) do QQ plot: 0.7530184505174652
+    Ajuste ruim.
 
 ========================================= BAYES =========================================
 Cli11DT_gg
