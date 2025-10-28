@@ -210,7 +210,7 @@ class BetaBinomial:
         print(f"Media Preditiva = {medtrain}")
         self.compareData(medtrain, medtest)
         print(f"Variância Referência (dados-test) = {medtest}")
-        print(f"Variância Preditiva = {medtrain}")
+        print(f"Variância Preditiva = {vartrain}")
         self.compareData(vartrain, vartest)
         print(f"Proporção Referência (dados-teste) = {proptest}")
         print(f"Proporção Preditiva = {proptrain}")
