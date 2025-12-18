@@ -16,10 +16,10 @@ def teste1(Y, k):
     beta = (n * k) / np.sum(Y)
 
     logL0 = (
-        n * k * np.log(beta)
-        - n * gammaln(k)
-        + (k - 1) * np.sum(np.log(Y))
-        - beta * np.sum(Y)
+        (n * k * np.log(beta))
+        - (n * gammaln(k))
+        + ((k - 1) * np.sum(np.log(Y)))
+        - (beta * np.sum(Y))
     )
 
     L0 = np.exp(logL0)
@@ -28,8 +28,10 @@ def teste1(Y, k):
     print("LogL0: ", logL0)
     print("L0: ", L0)
 
-#print("Teste 1:")
-#teste1(Yt, kt)
+    return logL0
+
+print("Teste 1:")
+ll0 = teste1(Yt, kt)
 
 #-----------------------------------------------------------------------------------------------------------------------
 
@@ -59,5 +61,12 @@ def teste2(Yc, Ys, k):
     print("LogL1: ", logL1)
     print("L1: ", L1)
 
+    return logL1
+
 print("Teste 2:")
-teste2(Yc, Ys, kt)
+ll1 = teste2(Yc, Ys, kt)
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+print("Calculating LRT:")
+print("-2 log(Lambda) = ", "-2 .", ll0-ll1, "=", -2*(ll0-ll1))
