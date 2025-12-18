@@ -68,7 +68,7 @@ ll1 = teste2(Yc, Ys, kt)
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-#inutil pro trabalho isso aqui, calculei atoa
+#parece inutil mas serve para conferir se a resposta da questao 4 ta batendo
 print()
 print("Calculating LRT:")
 print("-2 log(Lambda) = ", "-2 .", ll0-ll1, "=", -2*(ll0-ll1))
