@@ -68,5 +68,25 @@ ll1 = teste2(Yc, Ys, kt)
 
 #-----------------------------------------------------------------------------------------------------------------------
 
+#inutil pro trabalho isso aqui, calculei atoa
+print()
 print("Calculating LRT:")
 print("-2 log(Lambda) = ", "-2 .", ll0-ll1, "=", -2*(ll0-ll1))
+print()
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+#Questao 4 -> Using alpha = 0.05
+
+def Wobs(Y, Yc, Ys, k):
+    nc = len(Yc)
+    ns = len(Ys)
+
+    w = (2 * k) * (
+        (nc * np.log(np.mean(Y) / np.mean(Yc))) +
+        (ns * np.log(np.mean(Y) / np.mean(Ys)))
+        )
+
+    return w
+
+print("Wobs = ", Wobs(Yt, Yc, Ys, kt))
